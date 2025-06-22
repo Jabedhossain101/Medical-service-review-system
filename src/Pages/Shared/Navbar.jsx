@@ -1,9 +1,19 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 200);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   const { user, signOutUser } = use(AuthContext);
   const handleSignOut = () => {
     signOutUser()
@@ -61,15 +71,18 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar z-50 fixed bg-blue-300/20 shadow-sm max-w-7xl w-full mx-auto">
+    <div
+      className={`navbar z-50 fixed shadow-sm max-w-7xl w-full mx-auto border-b-1
+         ease-in ${isScrolled ? 'bg-[#0B1D51] shadow-md' : 'bg-transparent'}`}
+    >
       <div className="navbar-start ">
         <div className="dropdown">
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost lg:hidden md:hidden  text-2xl mr-0.5"
+            className="btn btn-ghost lg:hidden   text-2xl mr-0.5"
           >
-            <RxHamburgerMenu />
+            <RxHamburgerMenu className="text-white" />
           </div>
           <ul
             tabIndex={0}
@@ -95,7 +108,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu menu-horizontal px-1 text-white">{links}</ul>
       </div>
       <div className="navbar-end gap-1">
         {user ? (
@@ -104,12 +117,12 @@ const Navbar = () => {
           </button>
         ) : (
           <>
-            <div className="hidden md:block space-x-1">
+            <div className=" space-x-1 flex">
               <Link to={'login'}>
                 <button className="btn bg-[#090040] text-white">Login</button>
               </Link>
               <Link to={'register'}>
-                <button className="btn bg-[#471396] text-white">
+                <button className="btn hidden md:block bg-[#471396] text-white">
                   Register
                 </button>
               </Link>

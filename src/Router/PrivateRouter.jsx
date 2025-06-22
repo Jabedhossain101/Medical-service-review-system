@@ -6,7 +6,7 @@ const PrivateRouter = ({ children }) => {
   const { user } = use(AuthContext);
 
   if (!user) {
-    <Navigate to="/signIn"></Navigate>;
+    return <Navigate to="/login"></Navigate>;
   }
   return children;
 };
