@@ -2,10 +2,15 @@ import React, { use } from 'react';
 import loginLottie from '../assets/Login.json';
 import { AuthContext } from '../Context/AuthContext';
 import Lottie from 'lottie-react';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../Context/SocialLogin';
 const Login = () => {
   const { signInUser } = use(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || '/';
+  console.log('location in sign in page', location);
 
   const handleSignIn = e => {
     e.preventDefault();
@@ -19,6 +24,7 @@ const Login = () => {
     signInUser(email, password)
       .then(result => {
         console.log(result.user);
+        navigate(from);
       })
       .catch(error => {
         console.log(error);
@@ -73,7 +79,7 @@ const Login = () => {
           </div>
           <div className="divider">OR</div>
           <div className="flex justify-center">
-            <SocialLogin></SocialLogin>
+            <SocialLogin from={from}></SocialLogin>
           </div>
         </div>
       </div>

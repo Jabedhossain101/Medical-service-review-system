@@ -29,7 +29,7 @@ const Navbar = () => {
       <Link to="/">
         <li className="m-2">Home</li>
       </Link>
-      <Link to="/allService">
+      <Link to="/all">
         <li className="m-2">All Service</li>
       </Link>
       <Link to="/addService">
@@ -72,7 +72,7 @@ const Navbar = () => {
   );
   return (
     <div
-      className={`navbar z-50 fixed shadow-sm max-w-7xl w-full mx-auto border-b-1
+      className={`navbar z-50 fixed shadow-sm max-w-7xl w-full mx-auto 
          ease-in ${isScrolled ? 'bg-[#0B1D51] shadow-md' : 'bg-transparent'}`}
     >
       <div className="navbar-start ">
@@ -80,9 +80,9 @@ const Navbar = () => {
           <div
             tabIndex={0}
             role="button"
-            className="btn btn-ghost lg:hidden   text-2xl mr-0.5"
+            className="btn btn-ghost lg:hidden   text-2xl mr-0.5 bg-[#0B1D51]"
           >
-            <RxHamburgerMenu className="text-white" />
+            <RxHamburgerMenu className="text-white " />
           </div>
           <ul
             tabIndex={0}
@@ -108,11 +108,16 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-white">{links}</ul>
+        <ul className="menu menu-horizontal px-1 text-white bg-[#0B1D51] rounded-2xl">
+          {links}
+        </ul>
       </div>
       <div className="navbar-end gap-1">
         {user ? (
-          <button onClick={handleSignOut} className="btn">
+          <button
+            onClick={handleSignOut}
+            className="btn bg-[#471396] text-white"
+          >
             sign out
           </button>
         ) : (

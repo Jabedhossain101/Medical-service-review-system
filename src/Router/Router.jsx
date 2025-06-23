@@ -8,6 +8,7 @@ import AddService from '../components/AddService';
 import ErrorPage from '../Error/ErrorPage';
 import Details from '../components/Details';
 import PrivateRouter from './PrivateRouter';
+import All from '../components/All';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         Component: Login,
+      },
+      {
+        path: '/all',
+        Component: All,
       },
       {
         path: '/allService',
