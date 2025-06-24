@@ -1,7 +1,40 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useParams } from 'react-router';
+import useAuth from '../Hook/useAuth';
+import axios from 'axios';
 
 const Details = () => {
+  const { id: serviceId } = useParams();
+
+  const { user } = useAuth();
+  console.log(serviceId, user);
+
+  const handleReview = e => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const comment = form.comment.value;
+    const rating = form.rating.value;
+    const formData = { name, photo, email, comment, rating };
+    console.log(formData);
+
+    const review = {
+      serviceId,
+      reviewer: user.email,
+      formData,
+    };
+
+    axios
+      .post('http://localhost:3000/reviews', review)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   const {
     serviceImage,
     serviceTitle,
@@ -99,7 +132,7 @@ const Details = () => {
             Add a Review
           </h3>
 
-          <form className="space-y-4">
+          <form onSubmit={handleReview} className="space-y-4">
             <div>
               <label className="block text-sm text-gray-600 dark:text-gray-300">
                 Name
@@ -152,7 +185,10 @@ const Details = () => {
               <label className="block text-sm text-gray-600 dark:text-gray-300">
                 Rating
               </label>
-              <select className="w-full mt-1 p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white">
+              <select
+                name="rating"
+                className="w-full mt-1 p-2 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white"
+              >
                 <option>⭐ 1</option>
                 <option>⭐⭐ 2</option>
                 <option>⭐⭐⭐ 3</option>

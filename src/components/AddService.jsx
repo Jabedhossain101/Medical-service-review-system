@@ -20,7 +20,7 @@ const AddService = () => {
 
       <form onSubmit={handleAddService}>
         {/* All inputs wrapped in one div with bg */}
-        <div className="bg-gray-100 shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl shadow space-y-6">
+        <div className="bg-gray-100 shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl  space-y-6">
           {/* Service Image */}
           <div>
             <label className="block font-semibold mb-1">Service Image</label>
