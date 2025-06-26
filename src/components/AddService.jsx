@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React from 'react';
+import Swal from 'sweetalert2';
 
 const AddService = () => {
   const handleAddService = e => {
@@ -8,6 +10,25 @@ const AddService = () => {
     // console.log(formData.entries());
     const newMango = Object.fromEntries(formData.entries());
     console.log(newMango);
+
+    const service = { ...newMango };
+    axios
+      .get('http://localhost:3000/service', service)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your review has been saved',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
   return (
     <div className="p-12 text-center bg-[#f5f9f9]">

@@ -4,6 +4,7 @@ import { AuthContext } from '../Context/AuthContext';
 import Lottie from 'lottie-react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../Context/SocialLogin';
+import Swal from 'sweetalert2';
 const Login = () => {
   const { signInUser } = use(AuthContext);
 
@@ -25,6 +26,13 @@ const Login = () => {
       .then(result => {
         console.log(result.user);
         navigate(from);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Login successfully',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(error => {
         console.log(error);

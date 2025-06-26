@@ -1,93 +1,85 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Banner = () => {
-  const scrollRef = useRef(null);
-
-  const scroll = direction => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo =
-        direction === 'left'
-          ? scrollLeft - clientWidth
-          : scrollLeft + clientWidth;
-      scrollRef.current.scrollTo({
-        left: scrollTo,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  const images = [
-    'https://i.ibb.co/9mvVgMPR/olga-guryanova-t-MFeat-BSS4s-unsplash.jpg',
-
-    'https://i.ibb.co/v4ZwSHLb/lucas-vasques-9vn-ACv-X2748-unsplash.jpg',
-
-    'https://i.ibb.co/ynCtrctD/national-cancer-institute-NFvd-KIhx-Yl-U-unsplash.jpg',
-
-    'https://i.ibb.co/cXXrdgHp/robina-weermeijer-NIu-GLCC7q54-unsplash.jpg',
+  const slides = [
+    {
+      image:
+        'https://i.ibb.co/9mvVgMPR/olga-guryanova-t-MFeat-BSS4s-unsplash.jpg',
+      title: 'Caring For Life',
+      description: 'We provide world-class medical services with compassion.',
+      buttonText: 'Explore Services',
+    },
+    {
+      image:
+        'https://i.ibb.co/v4ZwSHLb/lucas-vasques-9vn-ACv-X2748-unsplash.jpg',
+      title: 'Trusted Professionals',
+      description: 'Experienced doctors and advanced medical support.',
+      buttonText: 'Meet Our Team',
+    },
+    {
+      image:
+        'https://i.ibb.co/ynCtrctD/national-cancer-institute-NFvd-KIhx-Yl-U-unsplash.jpg',
+      title: 'Modern Facilities',
+      description: 'State-of-the-art equipment for accurate treatment.',
+      buttonText: 'Take a Tour',
+    },
+    {
+      image:
+        'https://i.ibb.co/cXXrdgHp/robina-weermeijer-NIu-GLCC7q54-unsplash.jpg',
+      title: 'Emergency Ready',
+      description: '24/7 emergency support and quick response.',
+      buttonText: 'Get Help Now',
+    },
   ];
 
-  return (
-    <div className="relative max-w-6xl overflow-hidden rounded-lg mx-auto ">
-      {/* Left Arrow */}
-      <button
-        onClick={() => scroll('left')}
-        className="absolute left-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow hover:bg-white"
-      >
-        <svg
-          width="20"
-          height="20"
-          fill="none"
-          viewBox="0 0 8 14"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7 1L1 7L7 13"
-            stroke="black"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </button>
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-      {/* Carousel Images */}
-      <div
-        ref={scrollRef}
-        className="flex w-full overflow-x-auto scroll-smooth no-scrollbar"
-      >
-        {images.map((src, idx) => (
-          <div key={idx} className="flex-shrink-0 w-full">
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex(prevIndex =>
+        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  return (
+    <div>
+      <div className="h-16"></div>
+      <div className="relative max-w-7xl mx-auto h-[80vh] overflow-hidden rounded-lg">
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute top-0 left-0 w-full h-full transition-all duration-1000 ease-in-out
+              ${
+                index === currentIndex
+                  ? 'opacity-100 translate-y-0 z-10'
+                  : 'opacity-0 translate-y-10 z-0'
+              }`}
+          >
+            {/* Background Image */}
             <img
-              src={src}
-              alt={`Slide ${idx + 1}`}
-              className="w-full h-[80vh] object-cover"
+              src={slide.image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
             />
+
+            {/* Overlay content */}
+            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center p-4">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-2 drop-shadow">
+                {slide.title}
+              </h2>
+              <p className="text-lg sm:text-xl max-w-xl mb-4 drop-shadow">
+                {slide.description}
+              </p>
+              <button className="bg-lime-500 hover:bg-lime-600 px-5 py-2 rounded text-white font-semibold transition">
+                {slide.buttonText}
+              </button>
+            </div>
           </div>
         ))}
       </div>
-
-      {/* Right Arrow */}
-      <button
-        onClick={() => scroll('right')}
-        className="absolute right-4 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow hover:bg-white"
-      >
-        <svg
-          width="20"
-          height="20"
-          fill="none"
-          viewBox="0 0 8 14"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1 1L7 7L1 13"
-            stroke="black"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-      </button>
     </div>
   );
 };

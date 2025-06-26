@@ -2,6 +2,7 @@ import React from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import useAuth from '../Hook/useAuth';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Details = () => {
   const { id: serviceId } = useParams();
@@ -30,6 +31,15 @@ const Details = () => {
       .post('http://localhost:3000/reviews', review)
       .then(res => {
         console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your review has been saved',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
       })
       .catch(error => {
         console.log(error);
@@ -48,12 +58,12 @@ const Details = () => {
   } = useLoaderData();
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-200">
+    <div className="min-h-screen ">
       {/* Top bar */}
       <div className="h-16  w-full"></div>
 
       {/* Main Content Wrapper */}
-      <div className="flex flex-col lg:flex-row max-w-6xl mx-auto px-4 py-6 gap-6">
+      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 py-6 gap-6">
         {/* Left Section: Service Info */}
         <div className="w-full lg:w-2/3 bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
           <img

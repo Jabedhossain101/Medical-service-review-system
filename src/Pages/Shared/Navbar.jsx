@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,6 +20,13 @@ const Navbar = () => {
     signOutUser()
       .then(() => {
         console.log('sign out user');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'sign out',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(error => {
         console.log(error);
@@ -32,15 +40,19 @@ const Navbar = () => {
       <Link to="/all">
         <li className="m-2">All Service</li>
       </Link>
-      <Link to="/addService">
-        <li className="m-2">Add Service</li>
-      </Link>
-      <Link to="/updateMango">
-        <li className="m-2">My Service</li>
-      </Link>
-      <Link to="/users">
-        <li className="m-2">All user</li>
-      </Link>
+      {user && (
+        <>
+          <Link to="/addService">
+            <li className="m-2">Add Service</li>
+          </Link>
+          <Link to="/updateMango">
+            <li className="m-2">My Service</li>
+          </Link>
+          <Link to="/myReview">
+            <li className="m-2">My review</li>
+          </Link>
+        </>
+      )}
       <Link to="/unit">
         <li className="m-2">Blog</li>
       </Link>

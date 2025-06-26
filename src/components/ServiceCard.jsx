@@ -6,7 +6,7 @@ const ServiceCard = ({ service }) => {
     serviceImage,
     serviceTitle,
     companyName,
-    website,
+    // website,
     _id,
     category,
     description,
