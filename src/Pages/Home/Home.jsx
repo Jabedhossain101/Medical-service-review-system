@@ -4,14 +4,16 @@ import Hero from './Hero';
 import AllService from '../../components/AllService';
 import CountUp from 'react-countup';
 import FAQSection from './FAQSection';
+import Author from './Author';
 
 const Home = () => {
   const servicePromise = fetch('http://localhost:3000/service').then(res =>
     res.json()
   );
   return (
-    <div>
+    <div className="font-opensans">
       <Hero></Hero>
+      <Author></Author>
       <Banner></Banner>
       <Suspense fallback={'loading service'}>
         <AllService servicePromise={servicePromise}></AllService>

@@ -43,15 +43,15 @@ const Hero = () => {
                   <motion.img
                     src="https://i.ibb.co/67JvJw5F/national-cancer-institute-Krsoedf-RAf4-unsplash.jpg"
                     animate={{ y: [100, 50, 100] }}
-                    transition={{ duration: 20, repeat: Infinity }}
+                    transition={{ duration: 10, repeat: Infinity }}
                     className="w-[400px] rounded-t-[20px] rounded-br-[20px] border-transparent border-s-8 border-b-8 shadow-2xl"
                   />
-                  <motion.img
+                  {/* <motion.img
                     src="https://i.ibb.co/5xTJKDWH/akram-huseyn-V-0-ES17m9-Tc-unsplash.jpg"
-                    animate={{ x: [150, 70, 150] }}
+                    animate={{ x: [20, 0, 20] }}
                     transition={{ duration: 20, repeat: Infinity }}
                     className="w-[400px] h-[300px] rounded-bl-[20px] border-blue-500 border-r-8 border-b-8 shadow-2xl"
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="flex-1">

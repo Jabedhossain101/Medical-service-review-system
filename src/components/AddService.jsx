@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 
@@ -8,26 +7,27 @@ const AddService = () => {
     const form = e.target;
     const formData = new FormData(form);
     // console.log(formData.entries());
-    const newMango = Object.fromEntries(formData.entries());
-    console.log(newMango);
+    const newService = Object.fromEntries(formData.entries());
+    console.log(newService);
 
-    const service = { ...newMango };
-    axios
-      .get('http://localhost:3000/service', service)
-      .then(res => {
-        console.log(res.data);
-        if (res.data.insertedId) {
+    fetch('http://localhost:3000/service', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(newService),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          console.log('added successfully');
           Swal.fire({
-            position: 'top-end',
+            title: 'Added Successfully',
             icon: 'success',
-            title: 'Your review has been saved',
-            showConfirmButton: false,
-            timer: 1500,
+            draggable: true,
           });
+          form.reset();
         }
-      })
-      .catch(error => {
-        console.log(error);
       });
   };
   return (

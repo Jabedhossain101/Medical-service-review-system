@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
   } = service;
   return (
     <div className="p-6 flex justify-center">
-      <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div className="w-full  overflow-hidden bg-white max-w-4xl rounded-lg shadow-lg dark:bg-gray-800">
         <img
           className="object-cover object-center w-full h-56"
           src={serviceImage}

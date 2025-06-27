@@ -10,6 +10,7 @@ import Details from '../components/Details';
 import PrivateRouter from './PrivateRouter';
 import All from '../components/All';
 import MyReview from '../components/MyReview';
+import MyService from '../components/MyService';
 
 const router = createBrowserRouter([
   {
@@ -52,9 +53,18 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: 'myService',
+        element: (
+          <PrivateRouter>
+            <MyService></MyService>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: '/allService',
         Component: AllService,
       },
+
       {
         path: '/addService',
         Component: AddService,

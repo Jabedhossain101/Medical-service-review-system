@@ -45,7 +45,7 @@ const Navbar = () => {
           <Link to="/addService">
             <li className="m-2">Add Service</li>
           </Link>
-          <Link to="/updateMango">
+          <Link to="/myService">
             <li className="m-2">My Service</li>
           </Link>
           <Link to="/myReview">
@@ -87,7 +87,7 @@ const Navbar = () => {
       className={`navbar z-50 fixed shadow-sm max-w-7xl w-full mx-auto 
          ease-in ${isScrolled ? 'bg-[#0B1D51] shadow-md' : 'bg-transparent'}`}
     >
-      <div className="navbar-start ">
+      <div className="navbar-start">
         <div className="dropdown">
           <div
             tabIndex={0}
@@ -98,7 +98,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 text-md  shadow bg-white "
           >
             {links}
             <div className="flex">
@@ -114,7 +114,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex">
-          <a className="btn bg-[#FF8000] bg- text-xl">
+          <a className="btn bg-[#FF8000] text-xl font-poppins">
             MEDI<span className="text-white">SERVICE</span>
           </a>
         </div>
