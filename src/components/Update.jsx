@@ -135,7 +135,7 @@ const Update = () => {
               type="submit"
               className="btn bg-[#06923E] text-white w-full"
             >
-              Add Service
+              Update
             </button>
           </div>
         </div>

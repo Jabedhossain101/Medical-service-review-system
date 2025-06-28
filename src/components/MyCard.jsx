@@ -4,6 +4,8 @@ import { Link } from 'react-router';
 const MyCard = ({ service }) => {
   const { serviceImage, serviceTitle, category, price, companyName, _id } =
     service;
+
+  const handleDelete = () => {};
   return (
     <div>
       <div className="h-20"></div>
@@ -26,7 +28,7 @@ const MyCard = ({ service }) => {
             </p>
             <p>
               <span className="font-medium">Price: </span>
-              {price}$
+              {price}
             </p>
             <p>
               <span className="font-medium">Best Time to Visit:</span> Sunday to
@@ -67,7 +69,10 @@ const MyCard = ({ service }) => {
               ✏️ <span className="hidden sm:inline">Update</span>
             </Link>
 
-            <button className="bg-[#4b5f20] hover:bg-[#374818] text-white px-4 py-2 rounded-full flex items-center gap-1">
+            <button
+              onClick={handleDelete}
+              className="bg-[#4b5f20] hover:bg-[#374818] text-white px-4 py-2 rounded-full flex items-center gap-1"
+            >
               🗑️ <span className="hidden sm:inline">Delete</span>
             </button>
           </div>
