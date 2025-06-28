@@ -1,11 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyCard = ({ service }) => {
   const { serviceImage, serviceTitle, category, price, companyName, _id } =
     service;
 
-  const handleDelete = () => {};
+  const handleDelete = _id => {
+    console.log(_id);
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      console.log(result.isConfirmed);
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/service/${_id}`, {
+          method: 'DELETE',
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your service has been deleted.',
+                icon: 'success',
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <div className="h-20"></div>
@@ -70,7 +100,7 @@ const MyCard = ({ service }) => {
             </Link>
 
             <button
-              onClick={handleDelete}
+              onClick={() => handleDelete(_id)}
               className="bg-[#4b5f20] hover:bg-[#374818] text-white px-4 py-2 rounded-full flex items-center gap-1"
             >
               🗑️ <span className="hidden sm:inline">Delete</span>
