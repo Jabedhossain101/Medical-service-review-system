@@ -1,13 +1,50 @@
 import React from 'react';
+import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Update = () => {
-  const handleAddService = e => {
+  const {
+    _id,
+    website,
+    userEmail,
+    serviceTitle,
+    serviceImage,
+    price,
+    description,
+    companyName,
+
+    category,
+    addedDate,
+  } = useLoaderData();
+  console.log(useLoaderData());
+
+  const handleUpdateService = e => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     // console.log(formData.entries());
     const newService = Object.fromEntries(formData.entries());
     console.log(newService);
+
+    fetch(`http://localhost:3000/service/${_id}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(newService),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="p-12 text-center bg-[#f5f9f9]">
@@ -18,7 +55,7 @@ const Update = () => {
       consultations, and treatments.
     </p> */}
 
-      <form onSubmit={handleAddService}>
+      <form onSubmit={handleUpdateService}>
         {/* All inputs wrapped in one div with bg */}
         <div className="bg-gray-100 shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl  space-y-6">
           {/* Service Image */}
@@ -27,6 +64,7 @@ const Update = () => {
             <input
               type="text"
               name="serviceImage"
+              defaultValue={serviceImage}
               className="input input-bordered w-full bg-blue-50"
               placeholder="Service Image URL"
             />
@@ -38,6 +76,7 @@ const Update = () => {
             <input
               type="text"
               name="serviceTitle"
+              defaultValue={serviceTitle}
               className="input input-bordered w-full bg-blue-50"
               placeholder="Enter service title"
             />
@@ -49,6 +88,7 @@ const Update = () => {
             <input
               type="text"
               name="companyName"
+              defaultValue={companyName}
               className="input input-bordered w-full bg-blue-50"
               placeholder="Clinic or hospital name"
             />
@@ -60,6 +100,7 @@ const Update = () => {
             <input
               type="text"
               name="website"
+              defaultValue={website}
               className="input input-bordered w-full bg-blue-50"
               placeholder="https://example.com"
             />
@@ -70,6 +111,7 @@ const Update = () => {
             <label className="block font-semibold mb-1">Description</label>
             <textarea
               name="description"
+              defaultValue={description}
               className="textarea textarea-bordered w-full bg-blue-50"
               placeholder="Describe the service..."
               rows={4}
@@ -81,9 +123,10 @@ const Update = () => {
             <label className="block font-semibold mb-1">Category</label>
             <select
               name="category"
+              defaultValue={category}
               className="select select-bordered w-full bg-blue-50"
             >
-              <option disabled selected>
+              <option disabled value="">
                 Select category
               </option>
               <option>Health Check</option>
@@ -103,6 +146,7 @@ const Update = () => {
             <input
               type="number"
               name="price"
+              defaultValue={price}
               className="input input-bordered w-full bg-blue-50"
               placeholder="Enter service price"
             />
@@ -114,6 +158,7 @@ const Update = () => {
             <input
               type="email"
               name="userEmail"
+              defaultValue={userEmail}
               className="input input-bordered w-full bg-blue-50"
               placeholder="Your email address"
             />
@@ -125,6 +170,7 @@ const Update = () => {
             <input
               type="date"
               name="addedDate"
+              defaultValue={addedDate?.slice(0, 10)}
               className="input input-bordered w-full bg-blue-50"
             />
           </div>

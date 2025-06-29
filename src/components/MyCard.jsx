@@ -93,7 +93,7 @@ const MyCard = ({ service }) => {
               ➕ <span className="hidden sm:inline">Add</span>
             </Link>
             <Link
-              to={'/update'}
+              to={`/update/${_id}`}
               className="bg-[#4b5f20] hover:bg-[#374818] text-white px-4 py-2 rounded-full flex items-center gap-1"
             >
               ✏️ <span className="hidden sm:inline">Update</span>

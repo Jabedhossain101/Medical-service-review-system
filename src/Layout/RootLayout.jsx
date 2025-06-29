@@ -6,7 +6,7 @@ import Toggle from '../Pages/Shared/Toggle';
 const RootLayout = () => {
   return (
     <div>
-      <div className="max-w-7xl mx-auto">
+      <div className=" mx-auto">
         <Navbar></Navbar>
         <div>
           <Outlet></Outlet>

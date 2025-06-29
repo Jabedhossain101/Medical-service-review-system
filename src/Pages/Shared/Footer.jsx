@@ -1,25 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+import {
+  FaFacebookF,
+  FaGithub,
+  FaInstagramSquare,
+  FaLinkedin,
+} from 'react-icons/fa';
 const Footer = () => {
   const football = (
     <>
       <Link to="/">
         <li className="m-2 list-none focus:underline hover:underline">Home</li>
       </Link>
-      <Link to="/allData">
+      <Link to="/all">
         <li className="m-2 list-none focus:underline hover:underline">
-          All plants
+          All service
         </li>
       </Link>
-      <Link to="/addPlant">
+      <Link to="/addService">
         <li className="m-2 list-none focus:underline hover:underline">
-          Add plant
+          Add Service
         </li>
       </Link>
-      <Link to="/updateMango">
+      <Link to="/myService">
         <li className="m-2 list-none focus:underline hover:underline  ">
-          My Plants
+          My Service
+        </li>
+      </Link>
+      <Link to="/myReview">
+        <li className="m-2 list-none focus:underline hover:underline  ">
+          My Review
         </li>
       </Link>
       <Link to="/unit">
@@ -29,67 +39,116 @@ const Footer = () => {
   );
   return (
     <div>
-      <footer className="footer footer-horizontal footer-center bg-black  text-white rounded p-10">
-        <div className="flex">
-          <img
-            className="h-[40px] rounded-3xl"
-            src="https://i.ibb.co/QFqvKGYS/att.jpg"
-            alt=""
-          />
-          <h1 className="text-2xl font-bold">
-            GREEN<span className="text-green-500">SPHERE</span>
-          </h1>
-        </div>
-        <nav className="grid grid-flow-col gap-4">{football}</nav>
-        <nav>
-          <div className="grid grid-flow-col gap-8">
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-              </svg>
-            </a>
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-              </svg>
-            </a>
-            <a>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-              </svg>
-            </a>
+      <footer className=" bg-[#0B1D51]">
+        <div className="container px-6 py-12 mx-auto">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+            <div className="sm:col-span-2">
+              <div className="flex">
+                <a className="btn bg-[#471396] text-xl font-poppins mt-4">
+                  MEDI<span className="text-white">SERVICE</span>
+                </a>
+              </div>
+              <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">
+                Subscribe our service panel{' '}
+                <span className="text-green-300"> to get premium</span>
+              </h1>
+
+              <div className="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
+                <input
+                  id="email"
+                  type="text"
+                  className="px-4 py-2 text-black border rounded-md 
+                  bg-blue-50
+                  dark:focus:border-blue-300 focus:ring-blue-300"
+                  placeholder="Email Address"
+                />
+
+                <button className="w-full px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-[#471396] rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p className="font-semibold text-gray-800 dark:text-white">
+                Quick Link
+              </p>
+
+              <div className="text-white">{football}</div>
+            </div>
+
+            <div>
+              <p className="font-semibold text-gray-800 dark:text-white">
+                Industries
+              </p>
+
+              <div className="flex flex-col items-start mt-5 space-y-2">
+                <a
+                  href="#"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                >
+                  Diagnostic & Pathology Labs
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                >
+                  Mental Health & Therapy
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                >
+                  Surgical & Operation Services
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                >
+                  Nursing & Elderly Care
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"
+                >
+                  Medical Equipment & Devices
+                </a>
+              </div>
+            </div>
           </div>
-        </nav>
-        <div className="flex">
-          <h1>
-            <span className="font-bold">Email:</span> ahmed@gmail.com
-          </h1>
-          |<span className="font-bold">Contact:</span> 0123456789
+
+          <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
+
+          <div className="flex items-center justify-around">
+            <div className="flex text-2xl text-white gap-2">
+              {/* instagram */}
+              <FaInstagramSquare className="bg-white rounded-lg text-red-400" />
+              {/* Facebook */}
+              <FaFacebookF className="bg-blue-600  rounded-md p-0.5" />
+              {/* GitHub */}
+              <a href="https://github.com/Jabedhossain101">
+                <FaGithub />
+              </a>
+
+              {/* linkedin */}
+              <a href="https://www.linkedin.com/in/mdjabedhossain12/">
+                <FaLinkedin className="text-white bg-blue-800 rounded-md" />
+              </a>
+            </div>
+          </div>
+          <footer className="footer sm:footer-horizontal footer-center  text-white p-4">
+            <aside>
+              <p>
+                Copyright © {new Date().getFullYear()} Medi Service - All right
+                reserved
+              </p>
+              Developer By{' '}
+              <a href="" className="text-blue-500 hover:underline">
+                Md Jabed Hossain Rafsan
+              </a>
+            </aside>
+          </footer>
         </div>
-        <aside>
-          <p>
-            Copyright © {new Date().getFullYear()} - All right reserved by :
-            <a href="">MD JABED HOSSAIN RAFSAN</a>
-          </p>
-        </aside>
       </footer>
     </div>
   );

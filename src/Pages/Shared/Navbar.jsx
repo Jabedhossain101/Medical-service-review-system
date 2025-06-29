@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
-import { RxHamburgerMenu } from 'react-icons/rx';
+import { RxAvatar, RxHamburgerMenu } from 'react-icons/rx';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
@@ -56,35 +56,11 @@ const Navbar = () => {
       <Link to="/unit">
         <li className="m-2">Blog</li>
       </Link>
-      <Link className="m-2">
-        <div className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className=" ">
-            Hover
-          </div>
-          <ul
-            tabIndex={0}
-            className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-          >
-            <li>
-              {' '}
-              <div className="indicator w-[100px]">
-                <img
-                  alt="Tailwind CSS examples"
-                  src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                />
-              </div>
-            </li>
-            <li>
-              <a>Item 2</a>
-            </li>
-          </ul>
-        </div>
-      </Link>
     </>
   );
   return (
     <div
-      className={`navbar z-50 fixed shadow-sm max-w-7xl w-full mx-auto 
+      className={`navbar z-50 fixed shadow-sm  w-full mx-auto 
          ease-in ${isScrolled ? 'bg-[#0B1D51] shadow-md' : 'bg-transparent'}`}
     >
       <div className="navbar-start">
@@ -114,7 +90,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex">
-          <a className="btn bg-[#FF8000] text-xl font-poppins">
+          <a className="btn bg-[#471396] text-xl font-poppins">
             MEDI<span className="text-white">SERVICE</span>
           </a>
         </div>
@@ -126,12 +102,38 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-1">
         {user ? (
-          <button
-            onClick={handleSignOut}
-            className="btn bg-[#471396] text-white"
-          >
-            sign out
-          </button>
+          <div>
+            <Link className="m-2">
+              <div className="dropdown dropdown-hover">
+                <div tabIndex={0} role="button" className="btn">
+                  <RxAvatar className="text-3xl bg-none" />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+                >
+                  <li>
+                    {' '}
+                    <div className="indicator w-[100px]">
+                      <img
+                        alt="Tailwind CSS examples"
+                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                      />
+                    </div>
+                  </li>
+                  <li>
+                    <a>Item 2</a>
+                  </li>
+                </ul>
+              </div>
+            </Link>
+            <button
+              onClick={handleSignOut}
+              className="btn bg-[#471396] text-white"
+            >
+              sign out
+            </button>
+          </div>
         ) : (
           <>
             <div className=" space-x-1 flex">

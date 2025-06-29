@@ -39,12 +39,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/update/:id',
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/service/${params.id}`),
         Component: Update,
       },
       {
         path: '/login',
         Component: Login,
       },
+
       {
         path: '/all',
         Component: All,
