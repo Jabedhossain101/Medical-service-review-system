@@ -1,7 +1,27 @@
-import React from 'react';
+// import React, { useState } from 'react';
 import AllService from './AllService';
+import Search from './Search';
+import { useLoaderData } from 'react-router';
 
 const All = () => {
+  const data = useLoaderData();
+  // const [services, setServices] = useState(data);
+
+  const handleSearch = (e, text) => {
+    e.preventDefault();
+    const searchServices = data.filter(
+      service =>
+        service.serviceTitle
+          .toLowerCase()
+          .split(' ')
+          .includes(text.toLowerCase()) ||
+        service.companyName
+          .toLowerCase()
+          .split(' ')
+          .includes(text.toLowerCase())
+    );
+    console.log(searchServices);
+  };
   const portfolioItems = [
     {
       title: 'Ambulance & Rescue Unit',
@@ -69,41 +89,7 @@ const All = () => {
           All Service
         </h1>
       </div>
-      <div className=" flex md:justify-around flex-col gap-4 md:flex-row justify-center mt-4 ">
-        <div className="flex justify-center">
-          {' '}
-          <label
-            className="input rounded-2xl bg-blue-50 w-[300px]
-        "
-          >
-            <svg
-              className="h-[2em] opacity-50"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2.5"
-                fill="none"
-                stroke="currentColor"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-              </g>
-            </svg>
-            <input className="" type="search" required placeholder="Search" />
-          </label>
-        </div>
-        <div className="flex justify-center">
-          <select defaultValue="Pick a color" className="select rounded-2xl">
-            <option disabled={true}>Select an option</option>
-            <option>General</option>
-            <option>Diagnostic</option>
-            <option>Pregnancy</option>
-          </select>
-        </div>
-      </div>
+      <Search handleSearch={handleSearch}></Search>
       <AllService></AllService>
     </div>
   );

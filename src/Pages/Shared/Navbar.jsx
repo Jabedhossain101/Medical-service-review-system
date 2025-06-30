@@ -106,7 +106,7 @@ const Navbar = () => {
             <Link className="m-2">
               <div className="dropdown dropdown-hover">
                 <div tabIndex={0} role="button" className="btn">
-                  <RxAvatar className="text-3xl bg-none" />
+                  <RxAvatar className="text-3xl text-blue-800" />
                 </div>
                 <ul
                   tabIndex={0}
@@ -115,10 +115,7 @@ const Navbar = () => {
                   <li>
                     {' '}
                     <div className="indicator w-[100px]">
-                      <img
-                        alt="Tailwind CSS examples"
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                      />
+                      <h1>Hello brother</h1>
                     </div>
                   </li>
                   <li>
