@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { RxAvatar, RxHamburgerMenu } from 'react-icons/rx';
 import Swal from 'sweetalert2';
+import Avatar from '../../components/Avatar';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,6 +77,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 text-md  shadow bg-white "
           >
+            {' '}
             {links}
             <div className="flex">
               <Link to={'login'}>
@@ -102,34 +104,20 @@ const Navbar = () => {
       </div>
       <div className="navbar-end gap-1">
         {user ? (
-          <div>
-            <Link className="m-2">
-              <div className="dropdown dropdown-hover">
-                <div tabIndex={0} role="button" className="btn">
-                  <RxAvatar className="text-3xl text-blue-800" />
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
-                >
-                  <li>
-                    {' '}
-                    <div className="indicator w-[100px]">
-                      <h1>Hello brother</h1>
-                    </div>
-                  </li>
-                  <li>
-                    <a>Item 2</a>
-                  </li>
-                </ul>
-              </div>
-            </Link>
-            <button
-              onClick={handleSignOut}
-              className="btn bg-[#471396] text-white"
-            >
-              sign out
-            </button>
+          <div className="flex">
+            <div className="hidden md:block">
+              <Link className="m-2">
+                <Avatar></Avatar>
+              </Link>
+            </div>
+            <div>
+              <button
+                onClick={handleSignOut}
+                className="btn bg-[#471396] text-white"
+              >
+                sign out
+              </button>
+            </div>
           </div>
         ) : (
           <>

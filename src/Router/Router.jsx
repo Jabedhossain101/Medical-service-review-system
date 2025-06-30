@@ -12,6 +12,7 @@ import All from '../components/All';
 import MyReview from '../components/MyReview';
 import MyService from '../components/MyService';
 import Update from '../components/Update';
+import Avatar from '../components/Avatar';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,11 @@ const router = createBrowserRouter([
             <MyReview></MyReview>
           </PrivateRouter>
         ),
+      },
+      {
+        path: '/avatar',
+        loader: () => fetch('http://localhost:3000/users'),
+        Component: Avatar,
       },
       {
         path: 'myService',

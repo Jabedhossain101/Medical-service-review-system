@@ -1,37 +1,59 @@
 import Lottie from 'lottie-react';
-import React, { use } from 'react';
+import React, { useContext } from 'react';
 
 import registerLottie from '../assets/register.json';
 import { AuthContext } from '../Context/AuthContext';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const Register = () => {
-  const { createUser } = use(AuthContext);
-  const { signInWithGoogle } = use(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
   const handleGoogleSignIn = () => {
-    signInWithGoogle()
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    signInWithGoogle().then(result => {
+      console.log(result);
+      navigate(from, { replace: true }).catch(error => console.log(error));
+    });
   };
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || '/';
+  console.log('location in sign in page', location);
   const handleRegister = e => {
     e.preventDefault();
     const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
-    console.log(email, password);
+    const formData = new FormData(form);
+    const { email, password, ...rest } = Object.fromEntries(formData.entries());
+    const userProfile = {
+      email,
+      ...rest,
+    };
+
+    console.log(email, password, userProfile);
 
     // create user
-    createUser(email, password)
-      .then(result => {
-        console.log(result.user);
+    createUser(email, password).then(result => {
+      console.log(result.user);
+
+      fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({ userProfile }),
       })
-      .catch(error => {
-        console.log(error);
+        .then(res => res.json())
+        .then(data => {
+          console.log('data after register', data);
+        });
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your account has been saved',
+        showConfirmButton: false,
+        timer: 1500,
       });
+      navigate(from, { replace: true }).catch(error => console.log(error));
+    });
   };
 
   return (
@@ -56,14 +78,14 @@ const Register = () => {
                     <label className="label ">Name</label>
                     <input
                       name="name"
-                      type="email"
+                      type="name"
                       className="input bg-blue-100"
                       placeholder="Enter Your name"
                     />
                     <label className="label ">Photo</label>
                     <input
-                      name="email"
-                      type="email"
+                      name="PhotoURL"
+                      type="text"
                       className="input bg-blue-100"
                       placeholder="Photo URL"
                     />
@@ -80,6 +102,9 @@ const Register = () => {
                       type="password"
                       className="input bg-blue-100 text-blue-800"
                       placeholder="Password"
+                      required
+                      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$"
+                      title="Password must contain at least 6 characters, including uppercase, lowercase, and a number"
                     />
                     <div>
                       <a className="link link-hover">Forgot password?</a>
