@@ -6,7 +6,7 @@ const Search = ({ handleSearch }) => {
 
   return (
     <div>
-      <div className=" flex md:justify-around flex-col gap-4 md:flex-row justify-center mt-4 ">
+      <div className=" flex md:justify-around flex-col gap-3 md:flex-row justify-center mt-4 ">
         <form
           onSubmit={e => handleSearch(e, searchText)}
           className="flex
