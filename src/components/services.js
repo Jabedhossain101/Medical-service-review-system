@@ -1,5 +1,5 @@
 export const myReviewsPromise = email => {
-  return fetch(`http://localhost:3000/reviews?email=${email}`).then(res =>
-    res.json()
+  return fetch(`https://rafsan-service.vercel.app/reviews?email=${email}`).then(
+    res => res.json()
   );
 };

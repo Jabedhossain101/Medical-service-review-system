@@ -10,7 +10,7 @@ const AddService = () => {
     const newService = Object.fromEntries(formData.entries());
     console.log(newService);
 
-    fetch('http://localhost:3000/service', {
+    fetch('https://rafsan-service.vercel.app/service', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

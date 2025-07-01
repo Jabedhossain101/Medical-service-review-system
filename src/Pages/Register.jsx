@@ -34,7 +34,7 @@ const Register = () => {
     createUser(email, password).then(result => {
       console.log(result.user);
 
-      fetch('http://localhost:3000/users', {
+      fetch('https://rafsan-service.vercel.app/users', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',

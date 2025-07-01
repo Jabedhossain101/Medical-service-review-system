@@ -18,7 +18,7 @@ const ReviewRow = ({ review, index, handleDelete }) => {
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/reviews/${_id}`, {
+        fetch(`https://rafsan-service.vercel.app/reviews/${_id}`, {
           method: 'DELETE',
         })
           .then(res => res.json())

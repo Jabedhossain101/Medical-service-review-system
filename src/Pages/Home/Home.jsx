@@ -7,9 +7,10 @@ import FAQSection from './FAQSection';
 import Author from './Author';
 
 const Home = () => {
-  const servicePromise = fetch('http://localhost:3000/service').then(res =>
-    res.json()
-  );
+  const servicePromise = fetch(
+    'https://rafsan-service.vercel.app/service'
+  ).then(res => res.json());
+
   return (
     <div className="font-opensans">
       <Hero></Hero>

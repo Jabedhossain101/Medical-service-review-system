@@ -17,7 +17,7 @@ const Footer = () => {
           All service
         </li>
       </Link>
-      <Link to="/addService">
+      {/* <Link to="/addService">
         <li className="m-2 list-none focus:underline hover:underline">
           Add Service
         </li>
@@ -31,7 +31,7 @@ const Footer = () => {
         <li className="m-2 list-none focus:underline hover:underline  ">
           My Review
         </li>
-      </Link>
+      </Link> */}
       <Link to="/unit">
         <li className="m-2 list-none focus:underline hover:underline">Blog</li>
       </Link>

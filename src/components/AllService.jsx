@@ -6,7 +6,7 @@ const AllService = () => {
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:3000/service')
+    fetch('https://rafsan-service.vercel.app/service')
       .then(res => res.json())
       .then(data => setServices(data));
   }, []);

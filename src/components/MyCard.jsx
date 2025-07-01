@@ -20,7 +20,7 @@ const MyCard = ({ service }) => {
     }).then(result => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/service/${_id}`, {
+        fetch(`https://rafsan-service.vercel.app/service/${_id}`, {
           method: 'DELETE',
         })
           .then(res => res.json())

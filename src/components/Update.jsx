@@ -26,7 +26,7 @@ const Update = () => {
     const newService = Object.fromEntries(formData.entries());
     console.log(newService);
 
-    fetch(`http://localhost:3000/service/${_id}`, {
+    fetch(`https://rafsan-service.vercel.app/service/${_id}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',

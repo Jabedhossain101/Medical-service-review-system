@@ -36,12 +36,12 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/service/${params.id}`),
+          fetch(`https://rafsan-service.vercel.app/service/${params.id}`),
       },
       {
         path: '/update/:id',
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/service/${params.id}`),
+          fetch(`https://rafsan-service.vercel.app/service/${params.id}`),
         Component: Update,
       },
       {
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
 
       {
         path: '/all',
-        loader: () => fetch('http://localhost:3000/service'),
+        loader: () => fetch('https://rafsan-service.vercel.app/service'),
         Component: All,
       },
       {
@@ -64,12 +64,12 @@ const router = createBrowserRouter([
       },
       {
         path: '/avatar',
-        loader: () => fetch('http://localhost:3000/users'),
+        loader: () => fetch('https://rafsan-service.vercel.app/users'),
         Component: Avatar,
       },
       {
         path: 'myService',
-        loader: () => fetch('http://localhost:3000/service'),
+        loader: () => fetch('https://rafsan-service.vercel.app/service'),
         element: (
           <PrivateRouter>
             <MyService></MyService>

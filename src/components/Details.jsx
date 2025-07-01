@@ -28,7 +28,7 @@ const Details = () => {
     };
 
     axios
-      .post('http://localhost:3000/reviews', review)
+      .post('https://rafsan-service.vercel.app/reviews', review)
       .then(res => {
         console.log(res.data);
         if (res.data.insertedId) {
