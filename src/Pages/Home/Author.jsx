@@ -3,11 +3,10 @@ import React from 'react';
 const Author = () => {
   const authors = [
     {
-      name: 'Dr. Lisa Carter',
+      name: 'Dr. Mahabubur Rahman',
       role: 'Chief Medical Officer',
-      bio: 'Dr. Carter leads our medical team with over 20 years of experience in general and emergency care. Her focus is on patient-centered solutions.',
-      image:
-        'https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
+      bio: 'Dr. Mahbubur Rahman leads our medical team with over 20 years of experience in general and emergency care. Her focus is on patient-centered solutions.',
+      image: 'https://i.ibb.co/F4hxfX3y/pexels-linkedin-2182970.jpg',
     },
     {
       name: 'Dr. James Lee',

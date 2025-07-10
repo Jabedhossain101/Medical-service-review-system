@@ -1,34 +1,42 @@
-// import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AllService from './AllService';
 import Search from './Search';
 import { useLoaderData } from 'react-router';
 
 const All = () => {
   const data = useLoaderData();
-  // const [services, setServices] = useState(data);
+  const [loading, setLoading] = useState(true);
+  const [filteredServices, setFilteredServices] = useState([]);
+
+  useEffect(() => {
+    setFilteredServices(data); // shuru te sob dekhanor jonno
+  }, [data]);
+
+  // Simulate data loading delay (optional)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // 1 second delay
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSearch = (e, text) => {
     e.preventDefault();
+    const searchText = text.toLowerCase();
     const searchServices = data.filter(
       service =>
-        service.serviceTitle
-          .toLowerCase()
-          .split(' ')
-          .includes(text.toLowerCase()) ||
-        service.companyName
-          .toLowerCase()
-          .split(' ')
-          .includes(text.toLowerCase())
+        service.serviceTitle.toLowerCase().includes(searchText) ||
+        service.companyName.toLowerCase().includes(searchText)
     );
-    console.log(searchServices);
+    setFilteredServices(searchServices);
   };
+
   const portfolioItems = [
     {
       title: 'Ambulance & Rescue Unit',
       category: '24/7 Ambulance Support',
       description:
-        ' Our ambulance service offers fast, reliable, and 24/7 emergency transportation equipped with advanced life-saving tools. Trained medical staff ensures safe and immediate care during every ride.',
-
+        'Our ambulance service offers fast, reliable, and 24/7 emergency transportation equipped with advanced life-saving tools. Trained medical staff ensures safe and immediate care during every ride.',
       imageUrl: 'https://i.ibb.co/hJvpFWZ2/image.png',
     },
     {
@@ -46,6 +54,16 @@ const All = () => {
       imageUrl: 'https://i.ibb.co/sd4j6vCK/image.png',
     },
   ];
+
+  // If still loading
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="w-16 h-16 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="h-16"></div>
@@ -90,7 +108,7 @@ const All = () => {
         </h1>
       </div>
       <Search handleSearch={handleSearch}></Search>
-      <AllService></AllService>
+      <AllService services={filteredServices}></AllService>
     </div>
   );
 };

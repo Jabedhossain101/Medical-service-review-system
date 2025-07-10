@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 const ReviewRow = ({ review, index, handleDelete }) => {
   const {
     _id,
-    formData: { name, photo, email, comment, rating },
+    formData: { name, email, rating },
   } = review;
 
   const onDelete = _id => {
@@ -42,18 +42,18 @@ const ReviewRow = ({ review, index, handleDelete }) => {
     <tr className="bg-lime-100 hover:bg-lime-200 text-[#333] text-sm lg:text-base border-b">
       <td className="px-2 py-3 text-center">{index + 1}</td>
       <td className="px-2 py-3">
-        <img
+        {/* <img
           src={photo}
           alt={name}
           className="w-12 h-12 sm:w-16 sm:h-16 rounded object-cover border"
-        />
+        /> */}
       </td>
       <td className="px-2 py-3">{name}</td>
       <td className="px-2 py-3 break-all">{email}</td>
       <td className="px-2 py-3">{date}</td>
-      <td className="px-2 py-3 max-w-xs truncate sm:whitespace-normal">
+      {/* <td className="px-2 py-3 max-w-xs truncate sm:whitespace-normal">
         {comment}
-      </td>
+      </td> */}
       <td className="px-2 py-3">
         <span className="inline-block bg-lime-400 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
           {rating}

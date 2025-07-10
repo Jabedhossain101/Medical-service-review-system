@@ -4,9 +4,9 @@ import Lottie from 'lottie-react';
 import { Link } from 'react-router';
 const ErrorPage = () => {
   return (
-    <div className="bg-blue-200 min-h-screen">
+    <div className="bg-blue-200 min-h-screen mx-auto">
       <Lottie
-        className="w-[500px] mx-auto"
+        className="w-[300px] mx-auto flex items-center"
         animationData={PageError}
         loop={true}
       ></Lottie>

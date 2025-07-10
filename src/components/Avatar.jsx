@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { RxAvatar } from 'react-icons/rx';
+import { Link } from 'react-router';
 
 const Avatar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,19 +57,20 @@ const Avatar = () => {
             <div className="mx-1">
               <h1 className="text-sm font-semibold text-gray-700 dark:text-gray-200"></h1>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                youandme@gmail.com
+                @gmail.com
               </p>
             </div>
           </a>
 
           <hr className="border-gray-200 dark:border-gray-700" />
 
-          <a
+          <Link
+            to={'/has'}
             href="#"
             className="block px-4 py-3 text-sm text-gray-600 capitalize dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
           >
             View Profile
-          </a>
+          </Link>
           <a
             href="#"
             className="block px-4 py-3 text-sm text-gray-600 capitalize dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"

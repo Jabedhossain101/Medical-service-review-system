@@ -48,9 +48,9 @@ const Footer = () => {
                   MEDI<span className="text-white">SERVICE</span>
                 </a>
               </div>
-              <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">
+              <h1 className="text-white font-bold text-2xl">
                 Subscribe our service panel{' '}
-                <span className="text-green-300"> to get premium</span>
+                <span className="text-green-400">to get premium</span>
               </h1>
 
               <div className="flex flex-col mx-auto mt-6 space-y-3 md:space-y-0 md:flex-row">
@@ -70,19 +70,15 @@ const Footer = () => {
             </div>
 
             <div>
-              <p className="font-semibold text-gray-800 dark:text-white">
-                Quick Link
-              </p>
+              <p className="text-white font-bold">Quick Link</p>
 
               <div className="text-white">{football}</div>
             </div>
 
             <div>
-              <p className="font-semibold text-gray-800 dark:text-white">
-                Industries
-              </p>
+              <p className="font-semibold  text-white">Industries</p>
 
-              <div className="flex flex-col items-start mt-5 space-y-2">
+              <div className="flex flex-col items-start mt-5 space-y-2 text-white">
                 <a
                   href="#"
                   className="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500"

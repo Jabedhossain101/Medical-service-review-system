@@ -79,15 +79,37 @@ const Navbar = () => {
           >
             {' '}
             {links}
-            <div className="flex">
-              <Link to={'login'}>
-                <button className="btn bg-[#090040] text-white">Login</button>
-              </Link>
-              <Link to={'register'}>
-                <button className="btn bg-[#471396] text-white">
-                  Register
-                </button>
-              </Link>
+            <div className="">
+              {user ? (
+                <div className="flex">
+                  <div className="hidden md:block"></div>
+                  <div>
+                    <button
+                      onClick={handleSignOut}
+                      className="btn bg-[#471396] text-white"
+                    >
+                      sign out
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className=" space-x-1 flex">
+                    <div>
+                      <Link to={'login'}>
+                        <button className="btn bg-[#090040] text-white">
+                          Login
+                        </button>
+                      </Link>
+                      <Link to={'register'}>
+                        <button className="btn  bg-[#471396] text-white">
+                          Register
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </ul>
         </div>
