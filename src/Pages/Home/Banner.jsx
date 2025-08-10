@@ -73,9 +73,7 @@ const Banner = () => {
               <p className="text-lg sm:text-xl max-w-xl mb-4 drop-shadow">
                 {slide.description}
               </p>
-              <button className="bg-lime-500 hover:bg-lime-600 px-5 py-2 rounded text-white font-semibold transition">
-                {slide.buttonText}
-              </button>
+           
             </div>
           </div>
         ))}

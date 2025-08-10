@@ -50,7 +50,7 @@ const FAQSection = () => {
         {faqs.map((faq, idx) => (
           <div
             key={idx}
-            className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-lg transition hover:shadow-2xl"
+            className=" bg-white rounded-lg shadow-lg transition hover:shadow-2xl"
           >
             <button
               className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none"
