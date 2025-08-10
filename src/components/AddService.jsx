@@ -41,14 +41,14 @@ const AddService = () => {
 
       <form onSubmit={handleAddService}>
         {/* All inputs wrapped in one div with bg */}
-        <div className="bg-gray-100 shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl  space-y-6">
+        <div className="bg-[#FAF7F3] shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl  space-y-6">
           {/* Service Image */}
           <div>
             <label className="block font-semibold mb-1">Service Image</label>
             <input
               type="text"
               name="serviceImage"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="Service Image URL"
             />
           </div>
@@ -59,7 +59,7 @@ const AddService = () => {
             <input
               type="text"
               name="serviceTitle"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="Enter service title"
             />
           </div>
@@ -70,7 +70,7 @@ const AddService = () => {
             <input
               type="text"
               name="companyName"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="Clinic or hospital name"
             />
           </div>
@@ -81,7 +81,7 @@ const AddService = () => {
             <input
               type="text"
               name="website"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="https://example.com"
             />
           </div>
@@ -91,7 +91,7 @@ const AddService = () => {
             <label className="block font-semibold mb-1">Description</label>
             <textarea
               name="description"
-              className="textarea textarea-bordered w-full bg-blue-50"
+              className="textarea textarea-bordered w-full bg-[#FFFFF0]"
               placeholder="Describe the service..."
               rows={4}
             ></textarea>
@@ -102,7 +102,7 @@ const AddService = () => {
             <label className="block font-semibold mb-1">Category</label>
             <select
               name="category"
-              className="select select-bordered w-full bg-blue-50"
+              className="select select-bordered w-full bg-[#FFFFF0]"
             >
               <option disabled selected>
                 Select category
@@ -124,7 +124,7 @@ const AddService = () => {
             <input
               type="number"
               name="price"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="Enter service price"
             />
           </div>
@@ -135,7 +135,7 @@ const AddService = () => {
             <input
               type="email"
               name="userEmail"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
               placeholder="Your email address"
             />
           </div>
@@ -146,7 +146,7 @@ const AddService = () => {
             <input
               type="date"
               name="addedDate"
-              className="input input-bordered w-full bg-blue-50"
+              className="input input-bordered w-full bg-[#FFFFF0]"
             />
           </div>
 
@@ -154,7 +154,7 @@ const AddService = () => {
           <div>
             <button
               type="submit"
-              className="btn bg-[#06923E] text-white w-full"
+              className="btn bg-[#FF9B00] text-white w-full"
             >
               Add Service
             </button>
