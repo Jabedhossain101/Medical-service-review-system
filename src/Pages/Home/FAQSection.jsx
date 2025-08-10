@@ -1,91 +1,100 @@
 import React, { useState } from 'react';
 
-const faqData = {
-  General: [
-    {
-      question: 'What services does your medical center offer?',
-      answer:
-        'We offer general medicine, emergency care, diagnostics, surgery, mental health counseling, and more.',
-    },
-    {
-      question: 'How can I book an appointment?',
-      answer:
-        'Appointments can be booked online, through our mobile app, or by calling our hotline.',
-    },
-  ],
-  Services: [
-    {
-      question: 'Do you offer emergency ambulance services?',
-      answer:
-        'Yes, we have 24/7 emergency ambulance services with fully equipped vehicles and trained personnel.',
-    },
-    {
-      question: 'Can I get lab test reports online?',
-      answer:
-        'Yes, lab test reports are securely available via our patient portal.',
-    },
-  ],
-  Billing: [
-    {
-      question: 'Do you accept health insurance?',
-      answer:
-        'Yes, we accept a wide range of private and public health insurances.',
-    },
-    {
-      question: 'How do I get a bill copy?',
-      answer:
-        'Bill copies are available through your account dashboard or at the billing counter.',
-    },
-  ],
-};
+const faqs = [
+  {
+    question: 'What services do you provide?',
+    answer:
+      'We offer a wide range of medical and emergency services, including ambulance support, surgery care, and mental health counseling. Our team is available 24/7 to assist you.',
+  },
+  {
+    question: 'How can I book an appointment?',
+    answer:
+      'You can book an appointment through our website or by calling our hotline. Our support team will guide you through the process and help you find the right specialist.',
+  },
+  {
+    question: 'Are your services available at night?',
+    answer:
+      'Yes, our emergency and medical services are available 24/7, including nights and holidays. We are always ready to serve you.',
+  },
+  {
+    question: 'Do you accept health insurance?',
+    answer:
+      'We accept most major health insurance plans. Please contact our billing department for specific details regarding your coverage.',
+  },
+  {
+    question: 'How do I get emergency help?',
+    answer:
+      'In case of emergency, call our hotline immediately. Our ambulance and medical team will be dispatched to your location as quickly as possible.',
+  },
+];
 
 const FAQSection = () => {
-  const [activeCategory, setActiveCategory] = useState('General');
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const handleToggle = idx => {
+    setOpenIndex(openIndex === idx ? null : idx);
+  };
 
   return (
-    <section className="bg-white rounded-2xl dark:bg-gray-900 max-w-7xl mx-auto px-6 py-12">
-      <div className="container  px-6 py-12 mx-auto">
-        <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">
-          Have any Questions?
-        </h1>
-
-        <div className="mt-8 xl:mt-16 lg:flex lg:-mx-12">
-          <div className="lg:mx-12">
-            <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
-              Table of Content
-            </h2>
-            <div className="mt-4 space-y-4 lg:mt-8">
-              {Object.keys(faqData).map(category => (
-                <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`block text-left hover:underline ${
-                    activeCategory === category
-                      ? 'text-blue-500 dark:text-blue-400'
-                      : 'text-gray-500 dark:text-gray-300'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex-1 mt-8 lg:mx-12 lg:mt-0">
-            {faqData[activeCategory].map((faq, index) => (
-              <div key={index} className="mb-10">
-                <h3 className="text-xl text-gray-700 dark:text-white font-medium">
-                  {faq.question}
-                </h3>
-                <p className="mt-2 text-gray-500 dark:text-gray-300">
-                  {faq.answer}
-                </p>
-                <hr className="my-4 border-gray-200 dark:border-gray-700" />
-              </div>
-            ))}
-          </div>
-        </div>
+    <section className="max-w-7xl mx-auto px-4 py-12">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-4 drop-shadow-lg">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-gray-600 md:text-lg">
+          Find answers to the most common questions about our services and
+          support.
+        </p>
       </div>
+      <div className="space-y-6">
+        {faqs.map((faq, idx) => (
+          <div
+            key={idx}
+            className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-lg transition hover:shadow-2xl"
+          >
+            <button
+              className="w-full flex justify-between items-center px-6 py-5 text-left focus:outline-none"
+              onClick={() => handleToggle(idx)}
+              aria-expanded={openIndex === idx}
+            >
+              <span className="text-lg md:text-xl font-semibold text-gray-800">
+                {faq.question}
+              </span>
+              <svg
+                className={`w-6 h-6 text-[#FF9B00] transform transition-transform duration-300 ${
+                  openIndex === idx ? 'rotate-180' : ''
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            {openIndex === idx && (
+              <div className="px-6 pb-6 text-gray-700 text-base md:text-lg animate-fade-in">
+                {faq.answer}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+      <style>
+        {`
+          @keyframes fade-in {
+            from { opacity: 0; transform: translateY(-10px);}
+            to { opacity: 1; transform: translateY(0);}
+          }
+          .animate-fade-in {
+            animation: fade-in 0.4s ease;
+          }
+        `}
+      </style>
     </section>
   );
 };
