@@ -14,7 +14,6 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then(result => {
-        console.log(result);
         navigate(from, { replace: true });
       })
       .catch(error => console.log(error));
@@ -30,145 +29,174 @@ const Register = () => {
       ...rest,
     };
 
-    createUser(email, password).then(result => {
-      console.log(result.user);
+    createUser(email, password)
+      .then(result => {
+        fetch('https://rafsan-service.vercel.app/users', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ userProfile }),
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log('data after register', data);
+          });
 
-      fetch('https://rafsan-service.vercel.app/users', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({ userProfile }),
-      })
-        .then(res => res.json())
-        .then(data => {
-          console.log('data after register', data);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your account has been saved',
+          showConfirmButton: false,
+          timer: 1500,
         });
 
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Your account has been saved',
-        showConfirmButton: false,
-        timer: 1500,
+        navigate(from, { replace: true });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Registration failed',
+          text: error.message,
+        });
       });
-
-      navigate(from, { replace: true });
-    });
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex flex-col justify-center items-center p-4">
+    <div>
       <div className="h-16"></div>
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center gap-8">
-        {/* Lottie Animation */}
-        <div className="w-full lg:w-1/2 flex justify-center">
-          <Lottie
-            className="w-full max-w-md"
-            animationData={registerLottie}
-            loop={true}
-          />
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-purple-100 p-6">
+        <div className="h-16"></div>
 
-        {/* Registration Form */}
-        <div className="w-full lg:w-1/2 bg-base-100 p-6 rounded-xl shadow-md">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            Register Now
-          </h1>
-          <form onSubmit={handleRegister} className="space-y-4">
-            <div>
-              <label className="label">Name</label>
-              <input
-                name="name"
-                type="text"
-                className="input input-bordered w-full bg-blue-100"
-                placeholder="Enter Your Name"
-              />
+        <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Lottie Animation */}
+          <div className="w-full lg:w-1/2 p-8 bg-gradient-to-tr from-purple-100 via-purple-50 to-white flex justify-center items-center">
+            <Lottie
+              className="w-full max-w-md"
+              animationData={registerLottie}
+              loop
+            />
+          </div>
+
+          {/* Registration Form */}
+          <div className="w-full lg:w-1/2 p-10 sm:p-14">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-10 text-center">
+              Create Account
+            </h1>
+
+            <form onSubmit={handleRegister} className="space-y-6">
+              <div>
+                <label className="block mb-1 text-gray-700 font-semibold">
+                  Name
+                </label>
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Enter your full name"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1 text-gray-700 font-semibold">
+                  Photo URL
+                </label>
+                <input
+                  name="PhotoURL"
+                  type="text"
+                  placeholder="Enter photo URL"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1 text-gray-700 font-semibold">
+                  Email
+                </label>
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400 transition"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-1 text-gray-700 font-semibold">
+                  Password
+                </label>
+                <input
+                  name="password"
+                  type="password"
+                  placeholder="Create a password"
+                  className="w-full p-3 rounded-lg border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-400 transition text-gray-800"
+                  required
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$"
+                  title="Password must contain at least 6 characters, including uppercase, lowercase, and a number"
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-3 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-lg shadow-lg transition duration-300"
+              >
+                Create Account
+              </button>
+            </form>
+
+            <p className="text-center text-gray-600 mt-8">
+              Already have an account?
+              <Link
+                to="/login"
+                className="text-orange-500 font-semibold ml-1 hover:underline"
+              >
+                Sign in
+              </Link>
+            </p>
+
+            <div className="flex items-center my-8">
+              <hr className="flex-grow border-gray-300" />
+              <span className="mx-3 text-gray-400 font-semibold">OR</span>
+              <hr className="flex-grow border-gray-300" />
             </div>
-            <div>
-              <label className="label">Photo URL</label>
-              <input
-                name="PhotoURL"
-                type="text"
-                className="input input-bordered w-full bg-blue-100"
-                placeholder="Photo URL"
-              />
-            </div>
-            <div>
-              <label className="label">Email</label>
-              <input
-                name="email"
-                type="email"
-                className="input input-bordered w-full bg-blue-100"
-                placeholder="Email"
-              />
-            </div>
-            <div>
-              <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input input-bordered w-full bg-blue-100 text-blue-800"
-                placeholder="Password"
-                required
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$"
-                title="Password must contain at least 6 characters, including uppercase, lowercase, and a number"
-              />
-            </div>
-            <div className="flex justify-between items-center text-sm">
-              <a className="link link-hover">Forgot password?</a>
-            </div>
+
             <button
-              type="submit"
-              className="btn w-full btn-neutral mt-4 rounded-tr-[20px] rounded-bl-[20px] bg-[#06923E] text-white"
+              onClick={handleGoogleSignIn}
+              className="w-full flex items-center justify-center gap-3 btn py-3 bg-base-400 text-black rounded-lg font-semibold shadow-md transition duration-300"
             >
-              Create an account
+              <svg
+                aria-label="Google logo"
+                width="20"
+                height="20"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                className="rounded-full"
+              >
+                <g>
+                  <path d="m0 0H512V512H0" fill="#fff"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
+                </g>
+              </svg>
+              Continue with Google
             </button>
-          </form>
-
-          <p className="text-center mt-4">
-            Already have an account?
-            <Link to={'/login'} className="link link-primary ml-1">
-              Sign in
-            </Link>
-          </p>
-
-          <div className="divider">OR</div>
-
-          <button
-            onClick={handleGoogleSignIn}
-            className="btn w-full flex items-center justify-center gap-2 text-black bg-[#7F55B1] border-[#e5e5e5]"
-          >
-            <svg
-              aria-label="Google logo"
-              width="16"
-              height="16"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              className="rounded-full"
-            >
-              <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
-                <path
-                  fill="#34a853"
-                  d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                ></path>
-                <path
-                  fill="#4285f4"
-                  d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                ></path>
-                <path
-                  fill="#fbbc02"
-                  d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                ></path>
-                <path
-                  fill="#ea4335"
-                  d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                ></path>
-              </g>
-            </svg>
-            Continue with Google
-          </button>
+          </div>
         </div>
       </div>
     </div>
