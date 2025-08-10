@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { useContext } from 'react';
 import loginLottie from '../assets/Login.json';
 import { AuthContext } from '../Context/AuthContext';
 import Lottie from 'lottie-react';
@@ -7,7 +7,7 @@ import SocialLogin from '../Context/SocialLogin';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-  const { signInUser } = use(AuthContext);
+  const { signInUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state || '/';
@@ -20,7 +20,6 @@ const Login = () => {
 
     signInUser(email, password)
       .then(result => {
-        console.log(result.user);
         navigate(from);
         Swal.fire({
           position: 'top-end',
@@ -32,15 +31,21 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.message,
+        });
       });
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex flex-col justify-center items-center p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-100 p-4">
       <div className="h-16"></div>
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center gap-8">
-        {/* Lottie Animation */}
-        <div className="w-full lg:w-1/2 flex justify-center">
+
+      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center bg-white rounded-2xl shadow-lg overflow-hidden">
+        {/* Left Section: Lottie Animation */}
+        <div className="w-full lg:w-1/2 flex justify-center items-center p-6 bg-gradient-to-tr from-blue-100 via-blue-50 to-white">
           <Lottie
             className="w-full max-w-md"
             animationData={loginLottie}
@@ -48,49 +53,74 @@ const Login = () => {
           />
         </div>
 
-        <div className="w-full lg:w-1/2 bg-base-100 p-6 rounded-xl shadow-md">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            Login Now
+        {/* Right Section: Login Form */}
+        <div className="w-full lg:w-1/2 p-8 sm:p-12">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-8">
+            Welcome Back
           </h1>
-          <form onSubmit={handleSignIn} className="space-y-4">
+
+          <form onSubmit={handleSignIn} className="space-y-5">
+            {/* Email */}
             <div>
-              <label className="label">Email</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Email
+              </label>
               <input
                 name="email"
                 type="email"
-                className="input input-bordered w-full bg-[#e9edf1]"
-                placeholder="Email"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                placeholder="Enter your email"
+                required
               />
             </div>
+
+            {/* Password */}
             <div>
-              <label className="label">Password</label>
+              <label className="block text-sm font-medium text-gray-600">
+                Password
+              </label>
               <input
                 name="password"
                 type="password"
-                className="input input-bordered w-full bg-[#e9edf1]"
-                placeholder="Password"
+                className="mt-1 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                placeholder="Enter your password"
+                required
               />
+              <div className="flex justify-end mt-2">
+                <a className="text-sm text-orange-500 hover:underline cursor-pointer">
+                  Forgot password?
+                </a>
+              </div>
             </div>
-            <div className="flex justify-between items-center text-sm">
-              <a className="link link-hover">Forgot password?</a>
-            </div>
+
+            {/* Submit Button */}
             <button
               type="submit"
-              className="btn w-full btn-neutral mt-4 rounded-tr-[20px] rounded-bl-[20px] bg-[#687FE5] text-white"
+              className="w-full py-3 rounded-lg bg-orange-400 text-white font-semibold shadow-md hover:bg-orange-600 transition duration-300"
             >
-              Login
+              Sign In
             </button>
           </form>
 
-          <p className="text-center mt-4">
-            Create an account?
-            <Link to={'/register'} className="link link-primary ml-1">
-              Please Register
+          {/* Register Link */}
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Don't have an account?
+            <Link
+              to={'/register'}
+              className="text-orange-500 font-medium hover:underline ml-1"
+            >
+              Create new account
             </Link>
           </p>
 
-          <div className="divider">OR</div>
+          {/* Divider */}
+          <div className="flex items-center my-6">
+            <hr className="flex-grow border-t border-gray-300" />
+            <span className="mx-3 text-gray-400 text-sm">OR</span>
+            <hr className="flex-grow border-t border-gray-300" />
+          </div>
 
+          {/* Social Login */}
           <div className="flex justify-center">
             <SocialLogin from={from} />
           </div>
