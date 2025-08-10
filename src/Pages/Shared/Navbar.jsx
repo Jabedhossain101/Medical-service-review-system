@@ -1,159 +1,141 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
-import { RxAvatar, RxHamburgerMenu } from 'react-icons/rx';
+import { RxHamburgerMenu } from 'react-icons/rx';
 import Swal from 'sweetalert2';
 import Avatar from '../../components/Avatar';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 200);
-    };
+  const { user, signOutUser } = useContext(AuthContext);
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  const { user, signOutUser } = use(AuthContext);
+  // Sign out handler
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
-        console.log('sign out user');
         Swal.fire({
           position: 'top-end',
           icon: 'success',
-          title: 'sign out',
+          title: 'Signed out successfully',
           showConfirmButton: false,
           timer: 1500,
         });
       })
-      .catch(error => {
-        console.log(error);
-      });
+      .catch(console.error);
   };
+
+  // Navbar Links
   const links = (
     <>
       <Link to="/">
-        <li className="m-2">Home</li>
+        <li className="m-2 hover:text-secondary transition font-bold">Home</li>
       </Link>
       <Link to="/all">
-        <li className="m-2">All Service</li>
+        <li className="m-2 hover:text-secondary transition font-bold">
+          All Services
+        </li>
       </Link>
       {user && (
         <>
           <Link to="/addService">
-            <li className="m-2">Add Service</li>
+            <li className="m-2 hover:text-secondary transition font-bold">
+              Add Service
+            </li>
           </Link>
           <Link to="/myService">
-            <li className="m-2">My Service</li>
+            <li className="m-2 hover:text-secondary transition font-bold">
+              My Services
+            </li>
           </Link>
           <Link to="/myReview">
-            <li className="m-2">My review</li>
+            <li className="m-2 hover:text-secondary transition font-bold">
+              My Reviews
+            </li>
           </Link>
         </>
       )}
-      <Link to="/unit">
-        <li className="m-2">Blog</li>
+      <Link to="/blog">
+        <li className="m-2 hover:text-secondary transition font-bold">Blog</li>
       </Link>
     </>
   );
+
   return (
-    <div
-      className={`navbar z-50 fixed shadow-sm  w-full mx-auto 
-         ease-in ${isScrolled ? 'bg-[#0B1D51] shadow-md' : 'bg-transparent'}`}
-    >
-      <div className="navbar-start">
+    <div className="navbar fixed top-0 z-50 w-full bg-black text-white shadow-md">
+      {/* Navbar Start */}
+      <div className="navbar-start px-4 lg:px-8">
+        {/* Mobile menu */}
         <div className="dropdown">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost lg:hidden   text-2xl mr-0.5 bg-[#0B1D51]"
-          >
-            <RxHamburgerMenu className="text-white " />
-          </div>
+          <label tabIndex={0} className="btn btn-ghost lg:hidden p-2">
+            <RxHamburgerMenu className="text-white text-2xl" />
+          </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 text-md  shadow bg-white "
+            className="menu menu-sm dropdown-content mt-3 p-3 shadow bg-white text-black rounded-none w-screen border border-gray-200"
           >
-            {' '}
             {links}
-            <div className="">
+            <div className="mt-3">
               {user ? (
-                <div className="flex">
-                  <div className="hidden md:block"></div>
-                  <div>
-                    <button
-                      onClick={handleSignOut}
-                      className="btn bg-[#471396] text-white"
-                    >
-                      sign out
-                    </button>
-                  </div>
-                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="btn btn-error btn-sm w-full text-white font-bold"
+                >
+                  Sign Out
+                </button>
               ) : (
-                <>
-                  <div className=" space-x-1 flex">
-                    <div>
-                      <Link to={'login'}>
-                        <button className="btn bg-[#090040] text-white">
-                          Login
-                        </button>
-                      </Link>
-                      <Link to={'register'}>
-                        <button className="btn  bg-[#471396] text-white">
-                          Register
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    to="/login"
+                    className="btn btn-primary btn-sm font-bold"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="btn btn-secondary btn-sm font-bold"
+                  >
+                    Register
+                  </Link>
+                </div>
               )}
             </div>
           </ul>
         </div>
-        <div className="flex">
-          <a className="btn bg-[#471396] text-xl font-poppins">
-            MEDI<span className="text-white">SERVICE</span>
-          </a>
-        </div>
+
+        {/* Brand Logo */}
+        <Link to="/" className="text-xl font-bold tracking-wide">
+          MEDI<span className="text-secondary">SERVICE</span>
+        </Link>
       </div>
+
+      {/* Navbar Center */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-white bg-[#0B1D51] rounded-2xl">
-          {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1 font-bold">{links}</ul>
       </div>
-      <div className="navbar-end gap-1">
+
+      {/* Navbar End */}
+      <div className="navbar-end px-4 lg:px-8">
         {user ? (
-          <div className="flex">
-            <div className="hidden md:block">
-              <Link className="m-2">
-                <Avatar></Avatar>
-              </Link>
-            </div>
-            <div>
-              <button
-                onClick={handleSignOut}
-                className="btn bg-[#471396] text-white"
-              >
-                sign out
-              </button>
-            </div>
+          <div className="flex items-center gap-3">
+            <Avatar />
+            <button
+              onClick={handleSignOut}
+              className="btn btn-outline btn-sm border-white text-white hover:bg-white hover:text-black"
+            >
+              Sign Out
+            </button>
           </div>
         ) : (
-          <>
-            <div className=" space-x-1 flex">
-              <Link to={'login'}>
-                <button className="btn bg-[#090040] text-white">Login</button>
-              </Link>
-              <Link to={'register'}>
-                <button className="btn hidden md:block bg-[#471396] text-white">
-                  Register
-                </button>
-              </Link>
-            </div>
-          </>
+          <div className="flex items-center gap-2">
+            <Link to="/login" className="btn btn-primary btn-sm">
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="btn btn-secondary btn-sm hidden md:inline-block"
+            >
+              Register
+            </Link>
+          </div>
         )}
       </div>
     </div>

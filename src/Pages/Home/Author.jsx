@@ -24,34 +24,34 @@ const Author = () => {
   ];
 
   return (
-    <section className="bg-white dark:bg-gray-900 rounded-2xl py-12">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-8">
+ 
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-xl font-bold text-center text-gray-800 mb-8">
           Meet Our Experts
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
           {authors.map((author, index) => (
             <div
               key={index}
-              className="bg-gray-100 dark:bg-gray-800 p-6 rounded-xl text-center shadow hover:shadow-lg transition duration-300"
+              className="bg-gray-100 p-6 rounded-xl text-center shadow-lg hover:shadow-lg transition duration-300"
             >
               <img
                 src={author.image}
                 alt={author.name}
                 className="w-32 h-32 mx-auto rounded-full object-cover border-4 border-blue-400"
               />
-              <h3 className="mt-4 text-xl font-semibold text-gray-900 dark:text-white">
+              <h3 className="mt-4 text-xl font-semibold text-gray-900">
                 {author.name}
               </h3>
               <p className="text-blue-500 font-medium">{author.role}</p>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+              <p className="mt-2 text-sm text-gray-600">
                 {author.bio}
               </p>
             </div>
           ))}
         </div>
       </div>
-    </section>
+   
   );
 };
 
