@@ -4,7 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
-  const text = 'This is our nation';
+  const text = 'Welcome to Our Service System';
 
   const slides = [
     {
@@ -60,7 +60,6 @@ const Hero = () => {
       {/* Animated headline under carousel */}
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center text-[#0B1D51] mt-10"
-        aria-label={text}
       >
         {text.split('').map((char, idx) => (
           <motion.span

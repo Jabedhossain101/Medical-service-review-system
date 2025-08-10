@@ -4,17 +4,17 @@ import Swal from 'sweetalert2';
 const ReviewRow = ({ review, index, handleDelete }) => {
   const {
     _id,
-    formData: { name, email, rating },
+    formData: { name, email, comment, rating, image },
   } = review;
 
   const onDelete = _id => {
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: 'This action cannot be undone!',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#2563eb',
+      cancelButtonColor: '#dc2626',
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
       if (result.isConfirmed) {
@@ -29,7 +29,7 @@ const ReviewRow = ({ review, index, handleDelete }) => {
                 text: 'Your review has been deleted.',
                 icon: 'success',
               });
-              handleDelete(_id); // notify parent
+              handleDelete(_id);
             }
           });
       }
@@ -39,30 +39,43 @@ const ReviewRow = ({ review, index, handleDelete }) => {
   const date = new Date().toLocaleDateString();
 
   return (
-    <tr className="bg-lime-100 hover:bg-lime-200 text-[#333] text-sm lg:text-base border-b">
-      <td className="px-2 py-3 text-center">{index + 1}</td>
-      <td className="px-2 py-3">
-        {/* <img
-          src={photo}
-          alt={name}
-          className="w-12 h-12 sm:w-16 sm:h-16 rounded object-cover border"
-        /> */}
+    <tr className="bg-white even:bg-gray-50 hover:bg-green-50 transition-all duration-200 border-b">
+      <td className="px-4 py-3 text-center font-medium text-gray-600">
+        {index + 1}
       </td>
-      <td className="px-2 py-3">{name}</td>
-      <td className="px-2 py-3 break-all">{email}</td>
-      <td className="px-2 py-3">{date}</td>
-      {/* <td className="px-2 py-3 max-w-xs truncate sm:whitespace-normal">
-        {comment}
-      </td> */}
-      <td className="px-2 py-3">
-        <span className="inline-block bg-lime-400 text-white px-3 py-1 rounded-full text-xs sm:text-sm">
+
+      {/* Image */}
+      <td className="px-4 py-3">
+        <img
+          src={image || 'https://via.placeholder.com/40'}
+          alt={name}
+          className="w-12 h-12 rounded-full object-cover border border-gray-200 shadow-sm"
+        />
+      </td>
+
+      {/* Name */}
+      <td className="px-4 py-3 text-gray-800 font-semibold">{name}</td>
+
+      {/* Email */}
+      <td className="px-4 py-3 text-gray-600 break-all">{email}</td>
+
+      {/* Date */}
+      <td className="px-4 py-3 text-gray-500">{date}</td>
+
+      {/* Comment */}
+     
+      {/* Rating */}
+      <td className="px-4 py-3 text-center">
+        <span className="inline-block bg-[#ffff] text-white px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
           {rating}
         </span>
       </td>
-      <td className="px-2 py-3 text-center">
+
+      {/* Delete Button */}
+      <td className="px-4 py-3 text-center">
         <button
           onClick={() => onDelete(_id)}
-          className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-xs sm:text-sm"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shadow-md"
         >
           Delete
         </button>

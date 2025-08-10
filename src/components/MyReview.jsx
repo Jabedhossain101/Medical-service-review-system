@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import ReviewList from './ReviewList';
 import useAuth from '../Hook/useAuth';
 import { myReviewsPromise } from './services';
+import ReviewTable from './ReviewTable';
 
 const MyReview = () => {
   const { user } = useAuth();

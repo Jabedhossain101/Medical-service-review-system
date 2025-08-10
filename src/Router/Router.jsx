@@ -62,6 +62,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+     
       {
         path: '/avatar',
         loader: () => fetch('https://rafsan-service.vercel.app/users'),
