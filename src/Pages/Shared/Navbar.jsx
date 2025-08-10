@@ -27,34 +27,34 @@ const Navbar = () => {
   const links = (
     <>
       <Link to="/">
-        <li className="m-2 hover:text-secondary transition font-bold">Home</li>
+        <li className="m-2 hover:text-[#FF9B00] transition font-bold">Home</li>
       </Link>
       <Link to="/all">
-        <li className="m-2 hover:text-secondary transition font-bold">
+        <li className="m-2 hover:text-[#FF9B00] transition font-bold">
           All Services
         </li>
       </Link>
       {user && (
         <>
           <Link to="/addService">
-            <li className="m-2 hover:text-secondary transition font-bold">
+            <li className="m-2 hover:text-[#FF9B00] transition font-bold">
               Add Service
             </li>
           </Link>
           <Link to="/myService">
-            <li className="m-2 hover:text-secondary transition font-bold">
+            <li className="m-2 hover:text-[#FF9B00] transition font-bold">
               My Services
             </li>
           </Link>
           <Link to="/myReview">
-            <li className="m-2 hover:text-secondary transition font-bold">
+            <li className="m-2 hover:text-[#FF9B00] transition font-bold">
               My Reviews
             </li>
           </Link>
         </>
       )}
       <Link to="/blog">
-        <li className="m-2 hover:text-secondary transition font-bold">Blog</li>
+        <li className="m-2 hover:text-[#FF9B00] transition font-bold">Blog</li>
       </Link>
     </>
   );

@@ -68,13 +68,13 @@ const All = () => {
     <div>
       <div className="h-16"></div>
 
-      <section className="bg-white mt-5 mx-auto dark:bg-gray-900 max-w-6xl rounded-2xl">
+      <section className=" bg-white my-8 max-w-7xl mx-auto rounded-xl shadow-md">
         <div className="container px-6 py-10 mx-auto">
-          <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">
+          <h1 className="text-2xl font-semibold text-center text-black capitalize lg:text-3xl ">
             Our service
           </h1>
 
-          <p className="mt-4 text-center text-gray-500 dark:text-gray-300">
+          <p className="mt-4 text-center text-gray-500 dark:text-gray-800">
             Our medical service provides comprehensive healthcare solutions with
             a focus on quality, compassion, and professionalism. From diagnosis
             to treatment, we ensure personalized care for every patient.
