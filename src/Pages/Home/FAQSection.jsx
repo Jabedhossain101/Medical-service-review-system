@@ -43,7 +43,7 @@ const FAQSection = () => {
   const [activeCategory, setActiveCategory] = useState('General');
 
   return (
-    <section className="bg-white rounded-2xl dark:bg-gray-900">
+    <section className="bg-white rounded-2xl dark:bg-gray-900 max-w-7xl mx-auto px-6 py-12">
       <div className="container  px-6 py-12 mx-auto">
         <h1 className="text-2xl font-semibold text-center text-gray-800 lg:text-3xl dark:text-white">
           Have any Questions?

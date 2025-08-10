@@ -25,7 +25,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="hero-container mt-16">
+    <div className="hero-container mt-16 max-w-7xl mx-auto">
       <Carousel
         showThumbs={false}
         autoPlay
@@ -35,7 +35,7 @@ const Hero = () => {
         emulateTouch
       >
         {slides.map((slide, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="relative mt-4">
             <img
               src={slide.img}
               alt={slide.title}

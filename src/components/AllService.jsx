@@ -11,15 +11,11 @@ const AllService = () => {
       .then(data => setServices(data));
   }, []);
 
-  const displayedServices = showAll ? services : services.slice(0, 6);
-
-  const handleToggle = () => {
-    setShowAll(prev => !prev); // Toggle showAll true/false
-  };
+  const displayedServices = showAll ? services : services.slice(0, 5);
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
         {displayedServices.map(service => (
           <ServiceCard key={service._id} service={service} />
         ))}
@@ -28,8 +24,8 @@ const AllService = () => {
       {services.length > 6 && (
         <div className="my-4 text-center">
           <button
-            onClick={handleToggle}
-            className="btn text-white bg-[#324495]"
+            onClick={() => setShowAll(prev => !prev)}
+            className="btn text-white bg-[#FF9B10]"
           >
             {showAll ? 'Show Less' : 'Show All'}
           </button>

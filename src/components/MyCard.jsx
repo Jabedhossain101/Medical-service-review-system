@@ -37,9 +37,9 @@ const MyCard = ({ service }) => {
     });
   };
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-4 py-6">
       <div className="h-20"></div>
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
         <div className="max-w-sm rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-[#eef1e1] to-[#e7efd7] relative p-4">
           <img
             className="rounded-xl h-48 w-full object-cover"

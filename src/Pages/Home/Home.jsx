@@ -21,7 +21,7 @@ const Home = () => {
       </Suspense>
 
       <FAQSection></FAQSection>
-      <section className="bg-lime-100 py-10 mt-10">
+      <section className="bg-lime-100 py-10 max-w-7xl mx-auto my-6">
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
           <div>
             <h2 className="text-4xl font-bold text-lime-600">

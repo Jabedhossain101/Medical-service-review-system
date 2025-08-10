@@ -77,21 +77,18 @@ const Navbar = () => {
               {user ? (
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-error btn-sm w-full text-white font-bold"
+                  className="btn bg-[#FF9B00] btn-sm w-full text-white font-bold"
                 >
                   Sign Out
                 </button>
               ) : (
                 <div className="flex flex-col gap-2">
-                  <Link
-                    to="/login"
-                    className="btn btn-primary btn-sm font-bold"
-                  >
+                  <Link to="/login" className="btn btn-sm font-bold">
                     Login
                   </Link>
                   <Link
                     to="/register"
-                    className="btn btn-secondary btn-sm font-bold"
+                    className="bg-[#FF9B00] btn btn-sm font-bold"
                   >
                     Register
                   </Link>
@@ -103,7 +100,7 @@ const Navbar = () => {
 
         {/* Brand Logo */}
         <Link to="/" className="text-xl font-bold tracking-wide">
-          MEDI<span className="text-secondary">SERVICE</span>
+          MEDI<span className="text-[#FF9B00]">SERVICE</span>
         </Link>
       </div>
 
@@ -119,19 +116,22 @@ const Navbar = () => {
             <Avatar />
             <button
               onClick={handleSignOut}
-              className="btn btn-outline btn-sm border-white text-white hover:bg-white hover:text-black"
+              className="bg-[#FF9B00] transition-all duration-300 text-white font-semibold px-4 py-2 hidden md:inline-block"
             >
               Sign Out
             </button>
           </div>
         ) : (
-          <div className="flex items-center gap-2">
-            <Link to="/login" className="btn btn-primary btn-sm">
+          <div className="flex items-center gap-3">
+            <Link
+              to="/login"
+              className="px-5 py-2 bg-[#fff] transition-all text-black duration-300 hidden md:inline-block"
+            >
               Login
             </Link>
             <Link
               to="/register"
-              className="btn btn-secondary btn-sm hidden md:inline-block"
+              className="px-5 py-2 bg-[#FF9B00] transition-all duration-300 hidden md:inline-block"
             >
               Register
             </Link>
