@@ -3,12 +3,11 @@ import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const MyCard = ({ service }) => {
+  
   const { serviceImage, serviceTitle, category, price, companyName, _id } =
     service;
 
   const handleDelete = _id => {
-    console.log(_id);
-
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -18,7 +17,6 @@ const MyCard = ({ service }) => {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!',
     }).then(result => {
-      console.log(result.isConfirmed);
       if (result.isConfirmed) {
         fetch(`https://rafsan-service.vercel.app/service/${_id}`, {
           method: 'DELETE',
@@ -36,75 +34,77 @@ const MyCard = ({ service }) => {
       }
     });
   };
+
   return (
-    <div className="">
-      <div className="h-20"></div>
-      <div className="flex justify-center ">
-        <div className="max-w-sm rounded-3xl overflow-hidden shadow-xl bg-[#FFFFF0] relative p-4">
+    <div>
+      <div className="h-16"></div>
+      <div className="flex justify-center">
+        <div className="w-full max-w-xs bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
           <img
-            className="rounded-xl h-48 w-full object-cover"
-            src={serviceImage} // Replace with your image
-            alt="Istanbul"
+            className="h-36 w-full object-cover"
+            src={serviceImage}
+            alt={serviceTitle}
           />
 
-          <div className=" text-gry-800 italic text-lg font-semibold px-3 py-1 mt-2 inline-block rounded-md shadow-md">
-            {companyName}
-          </div>
+          <div className="px-4 py-3">
+            <h3 className="text-lg font-semibold text-gray-800">
+              {companyName}
+            </h3>
 
-          <div className="mt-3 text-sm space-y-1">
-            <p>
-              <span className="text-gray-800 font-semibold">Category:</span>{' '}
-              {category}
-            </p>
-            <p>
-              <span className="font-medium">Price: </span>
-              {price}
-            </p>
-            <p>
-              <span className="font-medium">Best Time to Visit:</span> Sunday to
-              friday
-            </p>
-            <p>{serviceTitle}</p>
-            <Link
-              to={`/service/${_id}`}
-              className="bg-[#ff9b00] hover:bg-[#ff9b04] btn text-white px-4 py-2 rounded flex items-center gap-1"
-            >
-              👁️ <span className="hidden sm:inline">View more</span>
-            </Link>
-          </div>
+            <div className="text-sm text-gray-600 mt-1 space-y-1">
+              <p>
+                <span className="font-medium">Category:</span> {category}
+              </p>
+              <p>
+                <span className="font-medium">Price:</span> {price}
+              </p>
+              <p>
+                <span className="font-medium">Best Time:</span> Sun–Fri
+              </p>
+              <p className="text-gray-700">{serviceTitle}</p>
+            </div>
 
-          <div className="flex flex-wrap gap-2 mt-4">
-            <span className="bg-[#FFFFF0] text-[#000] px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-              Medical instrument
-            </span>
-            <span className="bg-[#FFFFF0] text-[#000] px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-              Operation theatre
-            </span>
-            <span className="bg-[#FFFFF0] text-[#000] px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-              Time to time
-            </span>
-          </div>
+            <div className="mt-3">
+              <Link
+                to={`/service/${_id}`}
+                className="w-full block text-center bg-orange-500 hover:bg-orange-600 text-white py-1.5 rounded-lg text-sm font-medium"
+              >
+                👁️ View More
+              </Link>
+            </div>
 
-          <div className="flex justify-between items-center mt-6 px-2 flex-wrap gap-2">
-            <Link
-              to={'/addService'}
-              className="bg-[#FFFFF0] btn text-gray-800 px-4 py-2 rounded flex items-center gap-1 hover:bg-base-200 transition-colors duration-300"
-            >
-              ➕ <span className="hidden sm:inline">Add</span>
-            </Link>
-            <Link
-              to={`/update/${_id}`}
-              className="bg-[#FFFFF0] btn text-gray-800 px-4 py-2 rounded flex items-center gap-1 hover:bg-base-200 transition-colors duration-300"
-            >
-              ✏️ <span className="hidden sm:inline">Update</span>
-            </Link>
+            <div className="flex flex-wrap gap-1 mt-3">
+              <span className="bg-gray-100 px-2 py-0.5 rounded-full text-xs font-medium">
+                Medical instrument
+              </span>
+              <span className="bg-gray-100 px-2 py-0.5 rounded-full text-xs font-medium">
+                Operation theatre
+              </span>
+              <span className="bg-gray-100 px-2 py-0.5 rounded-full text-xs font-medium">
+                Time to time
+              </span>
+            </div>
 
-            <button
-              onClick={() => handleDelete(_id)}
-              className="bg-[#FFFFF0] btn text-gray-800 px-4 py-2 rounded flex items-center gap-1 hover:bg-base-200 transition-colors duration-300"
-            >
-              🗑️ <span className="hidden sm:inline">Delete</span>
-            </button>
+            <div className="flex justify-between mt-4 gap-1">
+              <Link
+                to={'/addService'}
+                className="flex-1 text-center bg-green-100 hover:bg-green-200 text-green-800 py-1 rounded-lg text-sm"
+              >
+                ➕ Add
+              </Link>
+              <Link
+                to={`/update/${_id}`}
+                className="flex-1 text-center bg-blue-100 hover:bg-blue-200 text-blue-800 py-1 rounded-lg text-sm"
+              >
+                ✏️ Update
+              </Link>
+              <button
+                onClick={() => handleDelete(_id)}
+                className="flex-1 bg-red-100 hover:bg-red-200 text-red-800 py-1 rounded-lg text-sm"
+              >
+                🗑️ Delete
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { IoIosArrowRoundBack } from 'react-icons/io';
+import { Link } from 'react-router';
 import Swal from 'sweetalert2';
 
 const AddService = () => {
@@ -6,161 +8,188 @@ const AddService = () => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    // console.log(formData.entries());
     const newService = Object.fromEntries(formData.entries());
-    console.log(newService);
 
     fetch('https://rafsan-service.vercel.app/service', {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(newService),
     })
       .then(res => res.json())
       .then(data => {
         if (data.insertedId) {
-          console.log('added successfully');
           Swal.fire({
-            title: 'Added Successfully',
+            title: 'Service Added Successfully',
             icon: 'success',
-            draggable: true,
+            confirmButtonColor: '#06923E',
           });
           form.reset();
         }
       });
   };
+
   return (
-    <div className="p-12 text-center bg-[#f5f9f9]">
-      <div className="h-10"></div>
-      <h1 className="text-5xl font-bold mb-4">Add Medical Service</h1>
-      {/* <p className="text-fuchsia-400 m-4">
-        Add professional healthcare services including diagnostics,
-        consultations, and treatments.
-      </p> */}
+    <div>
+      <div className="h-16"></div>
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-green-50 via-white to-green-100 px-4">
+        <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl p-8">
+          <Link
+            className="flex items-center gap-2 mb-6 text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            to="/"
+          >
+            <IoIosArrowRoundBack className="text-2xl" />
+            Go Home
+          </Link>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-2">
+            Add Medical Service
+          </h1>
+          <p className="text-center text-gray-500 mb-8">
+            Provide professional healthcare services — diagnostics,
+            consultations, treatments, and more.
+          </p>
 
-      <form onSubmit={handleAddService}>
-        {/* All inputs wrapped in one div with bg */}
-        <div className="bg-[#FAF7F3] shadow-2xl dark:bg-[#fafaf9] p-6 rounded-xl  space-y-6">
-          {/* Service Image */}
-          <div>
-            <label className="block font-semibold mb-1">Service Image</label>
-            <input
-              type="text"
-              name="serviceImage"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="Service Image URL"
-            />
-          </div>
+          <form onSubmit={handleAddService} className="space-y-6">
+            {/* Service Image */}
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Service Image URL
+              </label>
+              <input
+                type="text"
+                name="serviceImage"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                placeholder="https://example.com/image.jpg"
+              />
+            </div>
 
-          {/* Service Title */}
-          <div>
-            <label className="block font-semibold mb-1">Service Title</label>
-            <input
-              type="text"
-              name="serviceTitle"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="Enter service title"
-            />
-          </div>
+            {/* Service Title & Company Name */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Service Title
+                </label>
+                <input
+                  type="text"
+                  name="serviceTitle"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  placeholder="Enter service title"
+                />
+              </div>
 
-          {/* Company Name */}
-          <div>
-            <label className="block font-semibold mb-1">Company Name</label>
-            <input
-              type="text"
-              name="companyName"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="Clinic or hospital name"
-            />
-          </div>
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  placeholder="Clinic or hospital name"
+                />
+              </div>
+            </div>
 
-          {/* Website */}
-          <div>
-            <label className="block font-semibold mb-1">Website</label>
-            <input
-              type="text"
-              name="website"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="https://example.com"
-            />
-          </div>
+            {/* Website */}
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Website
+              </label>
+              <input
+                type="text"
+                name="website"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                placeholder="https://example.com"
+              />
+            </div>
 
-          {/* Description */}
-          <div>
-            <label className="block font-semibold mb-1">Description</label>
-            <textarea
-              name="description"
-              className="textarea textarea-bordered w-full bg-[#FFFFF0]"
-              placeholder="Describe the service..."
-              rows={4}
-            ></textarea>
-          </div>
+            {/* Description */}
+            <div>
+              <label className="block font-semibold text-gray-700 mb-1">
+                Description
+              </label>
+              <textarea
+                name="description"
+                rows={4}
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                placeholder="Describe the service..."
+              ></textarea>
+            </div>
 
-          {/* Category */}
-          <div>
-            <label className="block font-semibold mb-1">Category</label>
-            <select
-              name="category"
-              className="select select-bordered w-full bg-[#FFFFF0]"
-            >
-              <option disabled selected>
-                Select category
-              </option>
-              <option>Health Check</option>
-              <option>Cardiology</option>
-              <option>Pediatrics</option>
-              <option>Dental</option>
-              <option>Radiology</option>
-              <option>Gynecology</option>
-              <option>Ophthalmology</option>
-              <option>Pathology</option>
-            </select>
-          </div>
+            {/* Category & Price */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Category
+                </label>
+                <select
+                  name="category"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                >
+                  <option disabled selected>
+                    Select category
+                  </option>
+                  <option>Health Check</option>
+                  <option>Cardiology</option>
+                  <option>Pediatrics</option>
+                  <option>Dental</option>
+                  <option>Radiology</option>
+                  <option>Gynecology</option>
+                  <option>Ophthalmology</option>
+                  <option>Pathology</option>
+                </select>
+              </div>
 
-          {/* Price */}
-          <div>
-            <label className="block font-semibold mb-1">Price (BDT)</label>
-            <input
-              type="number"
-              name="price"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="Enter service price"
-            />
-          </div>
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Price (BDT)
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  placeholder="Enter service price"
+                />
+              </div>
+            </div>
 
-          {/* User Email */}
-          <div>
-            <label className="block font-semibold mb-1">User Email</label>
-            <input
-              type="email"
-              name="userEmail"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-              placeholder="Your email address"
-            />
-          </div>
+            {/* Email & Date */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  name="userEmail"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  placeholder="Your email address"
+                />
+              </div>
 
-          {/* Added Date - User Selectable */}
-          <div>
-            <label className="block font-semibold mb-1">Added Date</label>
-            <input
-              type="date"
-              name="addedDate"
-              className="input input-bordered w-full bg-[#FFFFF0]"
-            />
-          </div>
+              <div>
+                <label className="block font-semibold text-gray-700 mb-1">
+                  Added Date
+                </label>
+                <input
+                  type="date"
+                  name="addedDate"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                />
+              </div>
+            </div>
 
-          {/* Submit Button */}
-          <div>
-            <button
-              type="submit"
-              className="btn bg-[#FF9B00] text-white w-full"
-            >
-              Add Service
-            </button>
-          </div>
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                className="w-full bg-[#ff9b00] hover:bg-orange-500 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md"
+              >
+                Add Service
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   );
 };
