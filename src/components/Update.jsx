@@ -48,8 +48,12 @@ const Update = () => {
       <div className="h-16"></div>
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 flex items-center justify-center p-4">
         <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 sm:p-10">
-          <Link className='flex items-center gap-2 mb-6 text-gray-600 hover:text-orange-500 transition-colors duration-300' to='/myservice'>
-            <IoIosArrowRoundBack className='text-2xl' />Go Back
+          <Link
+            className="flex items-center gap-2 mb-6 text-gray-600 hover:text-orange-500 transition-colors duration-300"
+            to="/myservice"
+          >
+            <IoIosArrowRoundBack className="text-2xl" />
+            Go Back
           </Link>
 
           <h1 className="text-3xl sm:text-4xl font-bold text-center mb-2">
@@ -93,7 +97,7 @@ const Update = () => {
 
             {/* Company Name */}
             <div>
-              <label className="block font-semibold text-gray-700 mb-1">
+              <label className="block font-semibold text-gray-600 mb-1">
                 Company Name
               </label>
               <input
