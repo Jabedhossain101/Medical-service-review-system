@@ -3,12 +3,10 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Swal from 'sweetalert2';
-import Avatar from '../../components/Avatar';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
-  // Sign out handler
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -23,7 +21,6 @@ const Navbar = () => {
       .catch(console.error);
   };
 
-  // Navbar Links
   const links = (
     <>
       <Link to="/">
@@ -112,14 +109,31 @@ const Navbar = () => {
       {/* Navbar End */}
       <div className="navbar-end px-4 lg:px-8">
         {user ? (
-          <div className="flex items-center gap-3">
-            <Avatar />
-            <button
-              onClick={handleSignOut}
-              className="bg-[#FF9B00] transition-all duration-300 text-white font-semibold px-4 py-2 hidden md:inline-block"
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img
+                  src={user.photoURL || 'https://via.placeholder.com/150'}
+                  alt="User Avatar"
+                />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-white text-black rounded-box w-52"
             >
-              Sign Out
-            </button>
+              <li>
+                <Link to="/profile" className='font-bold'>Profile</Link>
+              </li>
+              <li>
+                <Link to="/dashboard" className='font-bold'>Dashboard</Link>
+              </li>
+              <li>
+                <button className="btn bg-[#FF9B00] text-white font-bold" onClick={handleSignOut}>
+                  Sign Out
+                </button>
+              </li>
+            </ul>
           </div>
         ) : (
           <div className="flex items-center gap-3">

@@ -13,6 +13,9 @@ import MyReview from '../components/MyReview';
 import MyService from '../components/MyService';
 import Update from '../components/Update';
 import Avatar from '../components/Avatar';
+import Profile from '../Pages/Shared/Profile';
+import Dashboard from '../Pages/Dashboard/Dashboard';
+import DashboardHome from '../Pages/Dashboard/DashboardHome';
 
 const router = createBrowserRouter([
   {
@@ -62,7 +65,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
-     
+
       {
         path: '/avatar',
         loader: () => fetch('https://rafsan-service.vercel.app/users'),
@@ -78,13 +81,48 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: '/addService',
+        Component: AddService,
+      },
+      {
         path: '/allService',
         Component: AllService,
       },
 
       {
-        path: '/addService',
+        path: '/profile',
+        Component: Profile,
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    Component: Dashboard,
+    children: [
+      {
+        path: '/dashboard',
+        Component: DashboardHome,
+      },
+      {
+        path: '/dashboard/addService',
         Component: AddService,
+      },
+      {
+        path: '/dashboard/myReview',
+        element: (
+          <PrivateRouter>
+            <MyReview></MyReview>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: '/dashboard/myService',
+        loader: () => fetch('https://rafsan-service.vercel.app/service'),
+        element: (
+          <PrivateRouter>
+            <MyService></MyService>
+          </PrivateRouter>
+        ),
       },
     ],
   },

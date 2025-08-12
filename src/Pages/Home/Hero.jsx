@@ -25,7 +25,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="hero-container mt-16 max-w-7xl mx-auto">
+    <div className="hero-container mt-16 max-w-7xl mx-auto rounded-lg">
       <Carousel
         showThumbs={false}
         autoPlay
@@ -39,9 +39,9 @@ const Hero = () => {
             <img
               src={slide.img}
               alt={slide.title}
-              className="h-[80vh] object-cover w-full"
+              className="h-[60vh] object-cover w-full"
             />
-            <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center p-4">
+            <div className="absolute inset-0 bg-black/30 flex flex-col justify-center items-center text-center p-4">
               <motion.h1
                 className="text-4xl md:text-6xl font-bold text-white mb-4"
                 initial={{ opacity: 0, y: -30 }}

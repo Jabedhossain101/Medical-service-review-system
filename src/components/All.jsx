@@ -20,16 +20,6 @@ const All = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSearch = (e, text) => {
-    e.preventDefault();
-    const searchText = text.toLowerCase();
-    const searchServices = data.filter(
-      service =>
-        service.serviceTitle.toLowerCase().includes(searchText) ||
-        service.companyName.toLowerCase().includes(searchText)
-    );
-    setFilteredServices(searchServices);
-  };
 
   const portfolioItems = [
     {
@@ -59,7 +49,7 @@ const All = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="w-16 h-16 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+        <div className="w-16 h-16 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -107,7 +97,7 @@ const All = () => {
           All Service
         </h1>
       </div>
-      <Search handleSearch={handleSearch}></Search>
+     
       <AllService services={filteredServices}></AllService>
     </div>
   );

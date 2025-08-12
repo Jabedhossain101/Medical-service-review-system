@@ -31,7 +31,7 @@ const AddService = () => {
   return (
     <div>
       <div className="h-16"></div>
-      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-green-50 via-white to-green-100 px-4">
+      <div className="min-h-screen flex justify-center items-center px-4">
         <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl p-8">
           <Link
             className="flex items-center gap-2 mb-6 text-gray-600 hover:text-orange-500 transition-colors duration-300"
