@@ -6,6 +6,7 @@ import CountUp from 'react-countup';
 import FAQSection from './FAQSection';
 import Author from './Author';
 import About from '../../components/About';
+import Contact from '../../components/Contact';
 
 const Home = () => {
   const servicePromise = fetch(
@@ -51,6 +52,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+          <Contact></Contact>
     </div>
   );
 };

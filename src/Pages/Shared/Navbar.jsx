@@ -26,11 +26,11 @@ const Navbar = () => {
       <Link to="/">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">Home</li>
       </Link>
-      
+
       <Link to="/about">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">About</li>
       </Link>
-      
+
       <Link to="/all">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">
           All Services
@@ -38,12 +38,12 @@ const Navbar = () => {
       </Link>
       {user && (
         <>
-          <Link to="/addService">
+          <Link to="/dashboard">
             <li className="m-2 hover:text-[#FF9B00] transition font-bold">
-              Add Service
+              Dashboard
             </li>
           </Link>
-          <Link to="/myService">
+          {/* <Link to="/myService">
             <li className="m-2 hover:text-[#FF9B00] transition font-bold">
               My Services
             </li>
@@ -52,7 +52,7 @@ const Navbar = () => {
             <li className="m-2 hover:text-[#FF9B00] transition font-bold">
               My Reviews
             </li>
-          </Link>
+          </Link> */}
         </>
       )}
       <Link to="/blog">

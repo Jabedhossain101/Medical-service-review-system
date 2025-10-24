@@ -16,8 +16,9 @@ import Avatar from '../components/Avatar';
 import Profile from '../Pages/Shared/Profile';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import DashboardHome from '../Pages/Dashboard/DashboardHome';
-import About from '../components/About';
-import Contact from '../components/Contact';
+import AboutUs from '../components/AboutUs';
+import ContactUs from '../components/ContactUs';
+import Blog from '../components/Blog';
 
 const router = createBrowserRouter([
   {
@@ -45,11 +46,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/about',
-        Component: About,
+        Component: AboutUs,
       },
       {
         path: '/contact',
-        Component: Contact,
+        Component: ContactUs,
+      },
+      {
+        path: '/blog',
+        Component: Blog,
       },
       {
         path: '/update/:id',
