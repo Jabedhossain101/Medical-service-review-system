@@ -26,6 +26,11 @@ const Navbar = () => {
       <Link to="/">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">Home</li>
       </Link>
+      
+      <Link to="/about">
+        <li className="m-2 hover:text-[#FF9B00] transition font-bold">About</li>
+      </Link>
+      
       <Link to="/all">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">
           All Services
@@ -52,6 +57,11 @@ const Navbar = () => {
       )}
       <Link to="/blog">
         <li className="m-2 hover:text-[#FF9B00] transition font-bold">Blog</li>
+      </Link>
+      <Link to="/contact">
+        <li className="m-2 hover:text-[#FF9B00] transition font-bold">
+          Contact Us
+        </li>
       </Link>
     </>
   );
@@ -123,13 +133,20 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-sm dropdown-content bg-white text-black rounded-box w-52"
             >
               <li>
-                <Link to="/profile" className='font-bold'>Profile</Link>
+                <Link to="/profile" className="font-bold">
+                  Profile
+                </Link>
               </li>
               <li>
-                <Link to="/dashboard" className='font-bold'>Dashboard</Link>
+                <Link to="/dashboard" className="font-bold">
+                  Dashboard
+                </Link>
               </li>
               <li>
-                <button className="btn bg-[#FF9B00] text-white font-bold" onClick={handleSignOut}>
+                <button
+                  className="btn bg-[#FF9B00] text-white font-bold"
+                  onClick={handleSignOut}
+                >
                   Sign Out
                 </button>
               </li>

@@ -16,6 +16,8 @@ import Avatar from '../components/Avatar';
 import Profile from '../Pages/Shared/Profile';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import DashboardHome from '../Pages/Dashboard/DashboardHome';
+import About from '../components/About';
+import Contact from '../components/Contact';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(`https://rafsan-service.vercel.app/service/${params.id}`),
+      },
+      {
+        path: '/about',
+        Component: About,
+      },
+      {
+        path: '/contact',
+        Component: Contact,
       },
       {
         path: '/update/:id',

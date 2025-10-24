@@ -5,6 +5,7 @@ import AllService from '../../components/AllService';
 import CountUp from 'react-countup';
 import FAQSection from './FAQSection';
 import Author from './Author';
+import About from '../../components/About';
 
 const Home = () => {
   const servicePromise = fetch(
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <div className="font-opensans">
       <Hero></Hero>
+      <About></About>
       <Author></Author>
       <Banner></Banner>
       <Suspense fallback={'loading service'}>
