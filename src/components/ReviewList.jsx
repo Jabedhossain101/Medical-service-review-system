@@ -16,7 +16,7 @@ const ReviewList = ({ myReviewsPromise, handleDelete }) => {
             <th className="px-4 py-3">Name</th>
             <th className="px-4 py-3">Email</th>
             <th className="px-4 py-3">Date</th>
-            <th className="px-4 py-3">Comment</th>
+            
             <th className="px-4 py-3">Rating</th>
             <th className="px-4 py-3">Action</th>
           </tr>

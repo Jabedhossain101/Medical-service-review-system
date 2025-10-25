@@ -17,61 +17,132 @@ const About = () => {
             </h2>
 
             <p className="text-gray-600 md:text-lg">
-              We deliver reliable medical and emergency services around the clock.
-              From rapid ambulance response to specialist treatment plans, our
-              multidisciplinary team provides patient-first care with modern
-              equipment and compassionate staff.
+              We deliver reliable medical and emergency services around the
+              clock. From rapid ambulance response to specialist treatment
+              plans, our multidisciplinary team provides patient-first care with
+              modern equipment and compassionate staff.
             </p>
 
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <li className="flex items-start gap-3">
                 <span className="flex-none w-10 h-10 rounded-lg bg-[#EAF7FF] text-blue-700 inline-flex items-center justify-center">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 2v6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M6.2 9L4 20h16l-2.2-11" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M12 2v6"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M6.2 9L4 20h16l-2.2-11"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-semibold text-gray-800">24/7 Emergency Support</h4>
-                  <p className="text-sm text-gray-500">Rapid ambulance dispatch and emergency triage.</p>
+                  <h4 className="font-semibold text-gray-800">
+                    24/7 Emergency Support
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    Rapid ambulance dispatch and emergency triage.
+                  </p>
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <span className="flex-none w-10 h-10 rounded-lg bg-[#FFF6EA] text-[#FF9B10] inline-flex items-center justify-center">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 3v18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M3 12h18" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M12 3v18"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M3 12h18"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-semibold text-gray-800">Experienced Specialists</h4>
-                  <p className="text-sm text-gray-500">Certified doctors across multiple disciplines.</p>
+                  <h4 className="font-semibold text-gray-800">
+                    Experienced Specialists
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    Certified doctors across multiple disciplines.
+                  </p>
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <span className="flex-none w-10 h-10 rounded-lg bg-[#F0FFF6] text-green-600 inline-flex items-center justify-center">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M5 13l4 4L19 7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M5 13l4 4L19 7"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-semibold text-gray-800">Patient-centered Care</h4>
-                  <p className="text-sm text-gray-500">Personalized treatment plans and follow-ups.</p>
+                  <h4 className="font-semibold text-gray-800">
+                    Patient-centered Care
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    Personalized treatment plans and follow-ups.
+                  </p>
                 </div>
               </li>
 
               <li className="flex items-start gap-3">
                 <span className="flex-none w-10 h-10 rounded-lg bg-[#F8F6FF] text-purple-700 inline-flex items-center justify-center">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M12 8v8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M8 12h8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M12 8v8"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M8 12h8"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                 </span>
                 <div>
-                  <h4 className="font-semibold text-gray-800">Modern Facilities</h4>
-                  <p className="text-sm text-gray-500">State-of-the-art equipment for accurate diagnosis.</p>
+                  <h4 className="font-semibold text-gray-800">
+                    Modern Facilities
+                  </h4>
+                  <p className="text-sm text-gray-500">
+                    State-of-the-art equipment for accurate diagnosis.
+                  </p>
                 </div>
               </li>
             </ul>
@@ -95,15 +166,21 @@ const About = () => {
 
             <div className="mt-4 grid grid-cols-3 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-extrabold text-gray-800">24/7</div>
+                <div className="text-2xl font-extrabold text-gray-800">
+                  24/7
+                </div>
                 <div className="text-sm text-gray-500">Availability</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-extrabold text-gray-800">120+</div>
+                <div className="text-2xl font-extrabold text-gray-800">
+                  120+
+                </div>
                 <div className="text-sm text-gray-500">Specialists</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-extrabold text-gray-800">10k+</div>
+                <div className="text-2xl font-extrabold text-gray-800">
+                  10k+
+                </div>
                 <div className="text-sm text-gray-500">Patients helped</div>
               </div>
             </div>
@@ -113,7 +190,7 @@ const About = () => {
           <div className="order-first md:order-last flex justify-center md:justify-end">
             <div className="relative w-full max-w-xl">
               <img
-                src="https://images.unsplash.com/photo-1587502536263-12b2f6f9b3b9?auto=format&fit=crop&w=1000&q=80"
+                src="https://i.ibb.co.com/gZgCgPhr/image.png"
                 alt="Medical team"
                 className="w-full h-64 md:h-96 object-cover rounded-2xl shadow-2xl border-4 border-white"
               />
@@ -127,11 +204,17 @@ const About = () => {
                     className="w-12 h-12 rounded-full object-cover border-2 border-blue-50"
                   />
                   <div>
-                    <div className="text-sm font-semibold text-gray-800">Dr. Mahabub</div>
-                    <div className="text-xs text-gray-500">Chief Medical Officer</div>
+                    <div className="text-sm font-semibold text-gray-800">
+                      Dr. Mahabub
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      Chief Medical Officer
+                    </div>
                   </div>
                 </div>
-                <div className="mt-2 text-sm text-gray-600">Delivering trusted care with 20+ years experience.</div>
+                <div className="mt-2 text-sm text-gray-600">
+                  Delivering trusted care with 20+ years experience.
+                </div>
               </div>
             </div>
           </div>

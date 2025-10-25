@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 const ReviewRow = ({ review, index, handleDelete }) => {
   const {
     _id,
-    formData: { name, email, comment, rating, image },
+    formData: { name, email, rating, image },
   } = review;
 
   const onDelete = _id => {
@@ -62,7 +62,7 @@ const ReviewRow = ({ review, index, handleDelete }) => {
       {/* Date */}
       <td className="px-4 py-3 text-gray-500">{date}</td>
 
-      {/* Comment */}
+     
      
       {/* Rating */}
       <td className="px-4 py-3 text-center">

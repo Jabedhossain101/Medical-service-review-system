@@ -19,6 +19,8 @@ import DashboardHome from '../Pages/Dashboard/DashboardHome';
 import AboutUs from '../components/AboutUs';
 import ContactUs from '../components/ContactUs';
 import Blog from '../components/Blog';
+import Doctors from '../components/Doctors';
+import DoctorBooking from '../components/DoctorBooking';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         Component: Blog,
+      },
+      {
+        path: '/doctors',
+        Component: Doctors,
+      },
+      {
+        path: '/book/:doctorId',
+        Component:DoctorBooking,
       },
       {
         path: '/update/:id',
