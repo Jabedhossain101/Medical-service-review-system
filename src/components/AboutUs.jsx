@@ -6,26 +6,42 @@ const MissionSection = () => (
     <div className="bg-gradient-to-r from-white via-blue-50 to-white rounded-2xl shadow-xl p-8 md:p-12">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">Our Mission</h3>
+          <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
+            Our Mission
+          </h3>
           <p className="text-gray-600 leading-relaxed md:text-lg">
-            To provide fast, compassionate and professional medical & emergency services with modern facilities and a patient-first approach.
-            We constantly improve clinical outcomes through training, technology and community outreach — ensuring every patient receives timely,
+            To provide fast, compassionate and professional medical & emergency
+            services with modern facilities and a patient-first approach. We
+            constantly improve clinical outcomes through training, technology
+            and community outreach — ensuring every patient receives timely,
             respectful and evidence-based care.
           </p>
 
           <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <li className="flex gap-3 items-start">
-              <div className="w-10 h-10 rounded-lg bg-[#EAF7FF] flex items-center justify-center text-blue-700 font-bold">1</div>
+              <div className="w-10 h-10 rounded-lg bg-[#EAF7FF] flex items-center justify-center text-blue-700 font-bold">
+                1
+              </div>
               <div>
-                <div className="font-semibold text-gray-800">Rapid Response</div>
-                <div className="text-sm text-gray-500">Ambulance & emergency dispatch 24/7</div>
+                <div className="font-semibold text-gray-800">
+                  Rapid Response
+                </div>
+                <div className="text-sm text-gray-500">
+                  Ambulance & emergency dispatch 24/7
+                </div>
               </div>
             </li>
             <li className="flex gap-3 items-start">
-              <div className="w-10 h-10 rounded-lg bg-[#FFF6EA] flex items-center justify-center text-[#FF9B10] font-bold">2</div>
+              <div className="w-10 h-10 rounded-lg bg-[#FFF6EA] flex items-center justify-center text-[#FF9B10] font-bold">
+                2
+              </div>
               <div>
-                <div className="font-semibold text-gray-800">Trusted Specialists</div>
-                <div className="text-sm text-gray-500">Experienced doctors across departments</div>
+                <div className="font-semibold text-gray-800">
+                  Trusted Specialists
+                </div>
+                <div className="text-sm text-gray-500">
+                  Experienced doctors across departments
+                </div>
               </div>
             </li>
           </ul>
@@ -33,7 +49,7 @@ const MissionSection = () => (
 
         <div className="order-first md:order-last">
           <img
-            src="https://images.unsplash.com/photo-1580281657521-3c6a3b7a6c3d?auto=format&fit=crop&w=1000&q=80"
+            src="https://i.ibb.co.com/tPDs0ddS/image.png"
             alt="mission"
             className="w-full rounded-2xl shadow-lg object-cover h-64 md:h-96"
           />
