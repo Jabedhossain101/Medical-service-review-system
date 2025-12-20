@@ -11,7 +11,7 @@ const TopBanner = () => (
             We're Here For You — 24/7 Support
           </h1>
           <p className="text-gray-600 mb-6">
-            **Fast ambulance response**, expert medical care and friendly
+            *Fast ambulance response*, expert medical care and friendly
             support whenever you need it. Reach out and we'll take care of the
             rest.
           </p>

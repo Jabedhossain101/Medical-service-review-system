@@ -64,7 +64,7 @@ const DoctorBooking = () => {
 
           <button
             type="submit"
-            className="w-full px-6 py-3 mt-4 rounded-xl bg-green-600 text-white font-bold text-lg hover:bg-green-700 transition"
+            className="w-full px-6 py-3 mt-4 rounded-xl bg-amber-400 text-white font-bold text-lg hover:bg-amber-500 transition"
           >
             Confirm Booking
           </button>
