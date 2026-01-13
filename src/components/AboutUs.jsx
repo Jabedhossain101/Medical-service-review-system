@@ -1,57 +1,64 @@
 import React from 'react';
 import About from './About';
 
+/* ===================== MISSION ===================== */
 const MissionSection = () => (
-  <section className="max-w-7xl mx-auto px-4 py-12">
-    <div className="bg-gradient-to-r from-white via-blue-50 to-white rounded-2xl shadow-xl p-8 md:p-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+  <section className="max-w-7xl mx-auto px-6 py-20">
+    <div className="relative bg-gradient-to-br from-white via-blue-50 to-white rounded-3xl shadow-xl p-8 md:p-14 overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* Text */}
         <div>
-          <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">
+          <span className="text-blue-600 font-semibold text-sm">
+            Our Purpose
+          </span>
+
+          <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-3 mb-5">
             Our Mission
           </h3>
-          <p className="text-gray-600 leading-relaxed md:text-lg">
-            To provide fast, compassionate and professional medical & emergency
-            services with modern facilities and a patient-first approach. We
-            constantly improve clinical outcomes through training, technology
-            and community outreach — ensuring every patient receives timely,
-            respectful and evidence-based care.
+
+          <p className="text-slate-600 leading-relaxed text-lg">
+            We deliver fast, compassionate, and professional medical & emergency
+            services with a patient-first mindset. Through continuous training,
+            modern technology, and community outreach, we ensure safe and
+            evidence-based care for everyone.
           </p>
 
-          <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <li className="flex gap-3 items-start">
-              <div className="w-10 h-10 rounded-lg bg-[#EAF7FF] flex items-center justify-center text-blue-700 font-bold">
-                1
-              </div>
-              <div>
-                <div className="font-semibold text-gray-800">
-                  Rapid Response
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              {
+                title: 'Rapid Response',
+                desc: '24/7 ambulance & emergency dispatch',
+                color: 'bg-blue-100 text-blue-700',
+                num: '01',
+              },
+              {
+                title: 'Trusted Specialists',
+                desc: 'Experienced doctors across departments',
+                color: 'bg-orange-100 text-orange-600',
+                num: '02',
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex gap-4">
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold ${item.color}`}
+                >
+                  {item.num}
                 </div>
-                <div className="text-sm text-gray-500">
-                  Ambulance & emergency dispatch 24/7
+                <div>
+                  <h4 className="font-semibold text-slate-800">{item.title}</h4>
+                  <p className="text-sm text-slate-500">{item.desc}</p>
                 </div>
               </div>
-            </li>
-            <li className="flex gap-3 items-start">
-              <div className="w-10 h-10 rounded-lg bg-[#FFF6EA] flex items-center justify-center text-[#FF9B10] font-bold">
-                2
-              </div>
-              <div>
-                <div className="font-semibold text-gray-800">
-                  Trusted Specialists
-                </div>
-                <div className="text-sm text-gray-500">
-                  Experienced doctors across departments
-                </div>
-              </div>
-            </li>
-          </ul>
+            ))}
+          </div>
         </div>
 
-        <div className="order-first md:order-last">
+        {/* Image */}
+        <div>
           <img
             src="https://i.ibb.co.com/tPDs0ddS/image.png"
-            alt="mission"
-            className="w-full rounded-2xl shadow-lg object-cover h-64 md:h-96"
+            alt="Mission"
+            className="w-full h-72 md:h-[420px] object-cover rounded-3xl shadow-lg"
           />
         </div>
       </div>
@@ -59,65 +66,91 @@ const MissionSection = () => (
   </section>
 );
 
+/* ===================== VISION ===================== */
 const VisionSection = () => (
-  <section className="max-w-7xl mx-auto px-4 py-12">
-    <div className="rounded-2xl shadow-lg overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-3">
-        <div className="bg-[#0f172a] text-white p-8 lg:p-12">
-          <h4 className="text-2xl font-extrabold mb-3">Our Vision</h4>
-          <p className="text-gray-200 leading-relaxed">
-            A healthier community where timely care is available to everyone — built on innovation, education and collaboration.
-          </p>
-          <div className="mt-6 grid grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold">24/7</div>
-              <div className="text-sm text-gray-300">Service</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold">150+</div>
-              <div className="text-sm text-gray-300">Staff</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold">10k+</div>
-              <div className="text-sm text-gray-300">Lives Touched</div>
-            </div>
-          </div>
-        </div>
+  <section className="max-w-7xl mx-auto px-6 py-20">
+    <div className="rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-3">
+      {/* Left Dark Panel */}
+      <div className="bg-slate-900 text-white p-10 lg:p-14">
+        <span className="text-blue-400 font-semibold text-sm">
+          Looking Ahead
+        </span>
 
-        <div className="lg:col-span-2 p-6 md:p-12 bg-white">
-          <h5 className="text-lg font-semibold text-gray-800">How we get there</h5>
-          <ol className="mt-4 space-y-4 list-decimal list-inside text-gray-600">
-            <li><strong>Community Programs:</strong> Free screening camps and health education.</li>
-            <li><strong>Training:</strong> Continuous upskilling of staff and emergency drills.</li>
-            <li><strong>Technology:</strong> Investing in modern diagnostics and telehealth services.</li>
-          </ol>
+        <h4 className="text-3xl font-extrabold mt-3 mb-4">Our Vision</h4>
+
+        <p className="text-slate-300 leading-relaxed">
+          A healthier community where timely, quality care is accessible to
+          everyone — powered by innovation, education, and collaboration.
+        </p>
+
+        <div className="mt-10 grid grid-cols-3 gap-6 text-center">
+          {[
+            { value: '24/7', label: 'Service' },
+            { value: '150+', label: 'Staff' },
+            { value: '10k+', label: 'Lives Touched' },
+          ].map((s, i) => (
+            <div key={i}>
+              <div className="text-2xl font-bold">{s.value}</div>
+              <div className="text-sm text-slate-400">{s.label}</div>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Right Content */}
+      <div className="lg:col-span-2 bg-white p-8 md:p-14">
+        <h5 className="text-xl font-semibold text-slate-800 mb-6">
+          How We Achieve This
+        </h5>
+
+        <ol className="space-y-5 list-decimal list-inside text-slate-600">
+          <li>
+            <strong>Community Programs:</strong> Free screening camps and health
+            education initiatives.
+          </li>
+          <li>
+            <strong>Continuous Training:</strong> Regular upskilling and
+            emergency response drills.
+          </li>
+          <li>
+            <strong>Technology:</strong> Investment in modern diagnostics and
+            telemedicine.
+          </li>
+        </ol>
       </div>
     </div>
   </section>
 );
 
+/* ===================== FACILITIES ===================== */
 const FacilitiesSection = () => (
-  <section className="max-w-7xl mx-auto px-4 py-12">
-    <div className="bg-gradient-to-r from-white to-[#f7fbff] rounded-2xl shadow-xl p-6 md:p-12">
-      <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 text-center mb-8">Facilities & Specialities</h3>
+  <section className="max-w-7xl mx-auto px-6 py-20">
+    <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-xl p-8 md:p-14">
+      <div className="text-center mb-12">
+        <span className="text-blue-600 font-semibold text-sm">
+          What We Offer
+        </span>
+        <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-3">
+          Facilities & Specialities
+        </h3>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {[
-          { title: 'Emergency Care', desc: '24/7 ambulance & ER', iconBg: 'bg-[#ffeede]' },
-          { title: 'Surgery', desc: 'Advanced OT suites', iconBg: 'bg-[#eef7ff]' },
-          { title: 'Diagnostics', desc: 'Modern labs & imaging', iconBg: 'bg-[#f0fff6]' },
-          { title: 'Mental Health', desc: 'Counseling & therapy', iconBg: 'bg-[#f6f0ff]' },
+          { title: 'Emergency Care', desc: '24/7 ambulance & ER' },
+          { title: 'Surgery', desc: 'Advanced OT suites' },
+          { title: 'Diagnostics', desc: 'Modern labs & imaging' },
+          { title: 'Mental Health', desc: 'Counseling & therapy' },
         ].map((f, i) => (
-          <div key={i} className="p-6 rounded-2xl bg-white shadow hover:shadow-2xl transition">
-            <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${f.iconBg} mb-4`}>
-              <svg className="w-6 h-6 text-[#FF9B10]" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2v6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M6 10l-2 10h16l-2-10" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+          <div
+            key={i}
+            className="bg-white rounded-3xl p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+          >
+            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
+              <span className="text-blue-600 font-bold">+</span>
             </div>
-            <h6 className="font-semibold text-gray-800">{f.title}</h6>
-            <p className="text-sm text-gray-500 mt-2">{f.desc}</p>
+            <h6 className="font-semibold text-slate-800">{f.title}</h6>
+            <p className="text-sm text-slate-500 mt-2">{f.desc}</p>
           </div>
         ))}
       </div>
@@ -125,24 +158,41 @@ const FacilitiesSection = () => (
   </section>
 );
 
+/* ===================== ABOUT US ===================== */
 const AboutUs = () => {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10">
       <About />
       <MissionSection />
       <VisionSection />
       <FacilitiesSection />
 
       {/* CTA */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <div className="bg-[#FFFBF7] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+      <section className="max-w-7xl mx-auto px-6 py-20">
+        <div className="bg-gradient-to-r from-orange-50 to-white rounded-3xl p-10 md:p-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
-            <h4 className="text-2xl font-extrabold text-gray-900">Ready to get care?</h4>
-            <p className="text-gray-600 mt-2">Call our 24/7 hotline or book an appointment online. We are here for you.</p>
+            <h4 className="text-3xl font-extrabold text-slate-900">
+              Ready to Get Care?
+            </h4>
+            <p className="text-slate-600 mt-3 max-w-xl">
+              Call our 24/7 hotline or book an appointment online. Our medical
+              team is always ready to help you.
+            </p>
           </div>
-          <div className="flex gap-3">
-            <a href="#contact" className="px-5 py-3 rounded-lg bg-[#FF9B10] text-white font-semibold">Contact Us</a>
-            <a href="#services" className="px-5 py-3 rounded-lg border border-gray-200 text-gray-700">View Services</a>
+
+          <div className="flex gap-4">
+            <a
+              href="#contact"
+              className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold transition"
+            >
+              Contact Us
+            </a>
+            <a
+              href="#services"
+              className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition"
+            >
+              View Services
+            </a>
           </div>
         </div>
       </section>

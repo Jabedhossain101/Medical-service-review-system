@@ -1,84 +1,87 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const Banner = () => {
-  const slides = [
-    {
-      image:
-        'https://i.ibb.co/9mvVgMPR/olga-guryanova-t-MFeat-BSS4s-unsplash.jpg',
-      title: 'Caring For Life',
-      description: 'We provide world-class medical services with compassion.',
-      buttonText: 'Explore Services',
-    },
-    {
-      image:
-        'https://i.ibb.co/v4ZwSHLb/lucas-vasques-9vn-ACv-X2748-unsplash.jpg',
-      title: 'Trusted Professionals',
-      description: 'Experienced doctors and advanced medical support.',
-      buttonText: 'Meet Our Team',
-    },
-    {
-      image:
-        'https://i.ibb.co/ynCtrctD/national-cancer-institute-NFvd-KIhx-Yl-U-unsplash.jpg',
-      title: 'Modern Facilities',
-      description: 'State-of-the-art equipment for accurate treatment.',
-      buttonText: 'Take a Tour',
-    },
-    {
-      image:
-        'https://i.ibb.co/cXXrdgHp/robina-weermeijer-NIu-GLCC7q54-unsplash.jpg',
-      title: 'Emergency Ready',
-      description: '24/7 emergency support and quick response.',
-      buttonText: 'Get Help Now',
-    },
-  ];
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prevIndex =>
-        prevIndex === slides.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
   return (
-    <div>
-      <div className="h-16"></div>
-      <div className="relative max-w-7xl mx-auto h-[60vh] overflow-hidden rounded-lg">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute top-0 left-0 w-full h-full transition-all duration-1000 ease-in-out
-              ${
-                index === currentIndex
-                  ? 'opacity-100 translate-y-0 z-10'
-                  : 'opacity-0 translate-y-10 z-0'
-              }`}
-          >
-            {/* Background Image */}
-            <img
-              src={slide.image}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
+    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100">
+      {/* Gradient Blobs */}
+      <div className="absolute top-[-100px] left-[-100px] w-96 h-96 bg-blue-300 rounded-full blur-3xl opacity-30"></div>
+      <div className="absolute bottom-[-120px] right-[-120px] w-96 h-96 bg-indigo-300 rounded-full blur-3xl opacity-30"></div>
 
-            {/* Overlay content */}
-            <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-white text-center p-4">
-              <h2 className="text-3xl sm:text-4xl font-bold mb-2 drop-shadow">
-                {slide.title}
-              </h2>
-              <p className="text-lg sm:text-xl max-w-xl mb-4 drop-shadow">
-                {slide.description}
-              </p>
-           
+      <div className="relative max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        {/* LEFT CONTENT */}
+        <div>
+          <span className="inline-block mb-4 px-4 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
+            Trusted Healthcare Platform
+          </span>
+
+          <h1 className="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+            Better Care Starts with <br />
+            <span className="text-blue-600">Better Reviews</span>
+          </h1>
+
+          <p className="mt-6 text-lg text-slate-600 max-w-xl">
+            Discover verified doctors, trusted clinics, and real patient
+            reviews. Make confident healthcare decisions in minutes.
+          </p>
+
+          {/* Search Box */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 bg-white/80 backdrop-blur-lg p-3 rounded-2xl shadow-xl border">
+            <input
+              type="text"
+              placeholder="Search doctors, hospitals, services..."
+              className="flex-1 px-4 py-3 rounded-xl outline-none text-slate-700 bg-transparent"
+            />
+            <button className="px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+              Explore
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-10 flex gap-8">
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">10k+</h3>
+              <p className="text-sm text-slate-500">Verified Reviews</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">500+</h3>
+              <p className="text-sm text-slate-500">Specialist Doctors</p>
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-slate-900">98%</h3>
+              <p className="text-sm text-slate-500">Patient Satisfaction</p>
             </div>
           </div>
-        ))}
+        </div>
+
+        {/* RIGHT IMAGE AREA */}
+        <div className="relative flex justify-center">
+          {/* Doctor Image */}
+          <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+            <img
+              src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=900&q=80"
+              alt="Doctor"
+              className="w-[380px] md:w-[420px] object-cover"
+            />
+          </div>
+
+          {/* Floating Card 1 */}
+          <div className="absolute top-10 -left-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+            <p className="text-sm font-semibold text-slate-800">
+              ✔ Verified Doctors
+            </p>
+            <p className="text-xs text-slate-500">Government Approved</p>
+          </div>
+
+          {/* Floating Card 2 */}
+          <div className="absolute bottom-10 -right-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg">
+            <p className="text-sm font-semibold text-slate-800">
+              ⭐ 4.9 Rating
+            </p>
+            <p className="text-xs text-slate-500">From Real Patients</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
