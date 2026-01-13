@@ -1,105 +1,126 @@
-import React, { useState, useEffect } from 'react';
-import AllService from './AllService';
-import Search from './Search';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router';
+import AllService from './AllService';
 
 const All = () => {
   const data = useLoaderData();
   const [loading, setLoading] = useState(true);
-  const [filteredServices, setFilteredServices] = useState([]);
 
-  useEffect(() => {
-    setFilteredServices(data); // shuru te sob dekhanor jonno
-  }, [data]);
-
-  // Simulate data loading delay (optional)
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // 1 second delay
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
-
 
   const portfolioItems = [
     {
       title: 'Ambulance & Rescue Unit',
-      category: '24/7 Ambulance Support',
+      category: '24/7 Emergency',
       description:
-        'Our ambulance service offers fast, reliable, and 24/7 emergency transportation equipped with advanced life-saving tools. Trained medical staff ensures safe and immediate care during every ride.',
+        'Fast, reliable ambulance service with trained paramedics and modern life-saving equipment.',
       imageUrl: 'https://i.ibb.co/hJvpFWZ2/image.png',
     },
     {
-      title: 'Medical Assistance Services',
-      category: '24/7 Medical Support',
+      title: 'Medical Assistance',
+      category: 'Medical Support',
       description:
-        'Our medical customer service ensures prompt support and guidance for patients with care and compassion. We are committed to assisting with appointments, inquiries, and emergency coordination efficiently.',
+        'Professional assistance for appointments, diagnostics, and emergency coordination.',
       imageUrl: 'https://i.ibb.co/m58MS5Jz/image.png',
     },
     {
-      title: 'Operation & Surgery Care',
-      category: 'Advanced',
+      title: 'Operation & Surgery',
+      category: 'Advanced Care',
       description:
-        'Our operation service ensures safe and efficient surgical procedures with the highest medical standards. Experienced surgeons and advanced equipment are used to deliver optimal patient outcomes.',
+        'High-standard surgical care with experienced surgeons and modern technology.',
       imageUrl: 'https://i.ibb.co/sd4j6vCK/image.png',
     },
   ];
 
-  // If still loading
+  /* ================= LOADING ================= */
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="w-16 h-16 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
+      <div className="flex items-center justify-center min-h-screen bg-white">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
+          <p className="text-gray-500 text-sm tracking-wide">
+            Loading services...
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div>
-      <div className="h-16"></div>
+    <main className="bg-[#F9FAFB]">
+      {/* Spacer for navbar */}
+      <div className="h-20"></div>
 
-      <section className=" bg-white my-8 max-w-7xl mx-auto rounded-xl shadow-md">
-        <div className="container px-6 py-10 mx-auto">
-          <h1 className="text-2xl font-semibold text-center text-black capitalize lg:text-3xl ">
-            Our service
+      {/* ================= INTRO SECTION ================= */}
+      <section className="max-w-7xl mx-auto px-4">
+        <div className="bg-gradient-to-r from-white via-orange-50 to-white rounded-3xl shadow-xl p-8 md:p-12 text-center">
+          <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold rounded-full bg-orange-100 text-orange-600">
+            Our Services
+          </span>
+
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-800">
+            Trusted Medical Services for a Healthier Life
           </h1>
 
-          <p className="mt-4 text-center text-gray-500 dark:text-gray-800">
-            Our medical service provides comprehensive healthcare solutions with
-            a focus on quality, compassion, and professionalism. From diagnosis
-            to treatment, we ensure personalized care for every patient.
+          <p className="mt-4 max-w-3xl mx-auto text-gray-600 leading-relaxed">
+            We provide comprehensive medical solutions focused on quality,
+            compassion, and professionalism — from emergency response to
+            advanced treatment care.
           </p>
-
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
-            {portfolioItems.map((item, index) => (
-              <div
-                key={index}
-                className="overflow-hidden bg-cover rounded-lg cursor-pointer h-96 group"
-                style={{ backgroundImage: `url(${item.imageUrl})` }}
-              >
-                <div className="flex flex-col justify-center w-full h-full px-8 py-4 transition-opacity duration-700 opacity-0 backdrop-blur-sm bg-gray-800/60 group-hover:opacity-100">
-                  <h2 className="mt-4 text-xl font-semibold text-white capitalize">
-                    {item.title}
-                  </h2>
-                  <p className="mt-2 text-lg tracking-wider text-blue-400 uppercase ">
-                    {item.category}
-                  </p>
-                  <p className="text-white">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      <div className="flex justify-center">
-        <h1 className="text-center my-4 p-3 border font-bold rounded-2xl">
-          All Service
-        </h1>
-      </div>
-     
-      <AllService services={filteredServices}></AllService>
-    </div>
+      {/* ================= FEATURED SERVICES ================= */}
+      <section className="max-w-7xl mx-auto px-4 mt-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {portfolioItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative h-96 rounded-2xl overflow-hidden shadow-lg group"
+            >
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-full h-full object-cover transform group-hover:scale-105 transition duration-700"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+
+              <div className="absolute bottom-0 p-6 text-white">
+                <span className="inline-block mb-2 text-xs font-semibold tracking-widest uppercase text-orange-400">
+                  {item.category}
+                </span>
+                <h3 className="text-xl font-bold">{item.title}</h3>
+                <p className="mt-2 text-sm text-gray-200">{item.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= ALL SERVICES TITLE ================= */}
+      <section className="max-w-7xl mx-auto px-4 mt-20">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-gray-800">
+            Explore All Services
+          </h2>
+          <p className="mt-3 text-gray-500">
+            Browse our complete list of professional medical services
+          </p>
+        </div>
+      </section>
+
+      {/* ================= ALL SERVICES GRID ================= */}
+      <AllService services={data} />
+
+      {/* Bottom spacing */}
+      <div className="h-20"></div>
+    </main>
   );
 };
 
