@@ -1,51 +1,61 @@
 import React from 'react';
 import About from './About';
+import { motion } from 'framer-motion';
+import {
+  FaAmbulance,
+  FaStethoscope,
+  FaMicroscope,
+  FaBrain,
+  FaPhoneAlt,
+  FaCalendarCheck,
+} from 'react-icons/fa';
 
-/* ===================== MISSION ===================== */
+/* ===================== MISSION SECTION ===================== */
 const MissionSection = () => (
   <section className="max-w-7xl mx-auto px-6 py-20">
-    <div className="relative bg-gradient-to-br from-white via-blue-50 to-white rounded-3xl shadow-xl p-8 md:p-14 overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="relative bg-gradient-to-br from-blue-50 via-white to-blue-50 rounded-[2.5rem] shadow-2xl shadow-blue-900/5 p-8 md:p-14 overflow-hidden border border-blue-100/50"
+    >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Text */}
+        {/* Text Content */}
         <div>
-          <span className="text-blue-600 font-semibold text-sm">
+          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-bold uppercase tracking-widest text-blue-600 bg-blue-100/50 rounded-full">
             Our Purpose
           </span>
 
-          <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-3 mb-5">
-            Our Mission
+          <h3 className="text-3xl md:text-5xl font-extrabold text-[#0B1D51] mt-3 mb-5 leading-tight">
+            Our{' '}
+            <span className="text-blue-500 italic font-medium">Mission</span>
           </h3>
 
           <p className="text-slate-600 leading-relaxed text-lg">
             We deliver fast, compassionate, and professional medical & emergency
-            services with a patient-first mindset. Through continuous training,
-            modern technology, and community outreach, we ensure safe and
-            evidence-based care for everyone.
+            services with a patient-first mindset. Through modern technology and
+            community outreach, we ensure evidence-based care for everyone.
           </p>
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
             {[
               {
                 title: 'Rapid Response',
-                desc: '24/7 ambulance & emergency dispatch',
-                color: 'bg-blue-100 text-blue-700',
+                desc: '24/7 emergency dispatch',
                 num: '01',
               },
               {
-                title: 'Trusted Specialists',
-                desc: 'Experienced doctors across departments',
-                color: 'bg-orange-100 text-orange-600',
+                title: 'Trusted Experts',
+                desc: 'Experienced professionals',
                 num: '02',
               },
             ].map((item, i) => (
-              <div key={i} className="flex gap-4">
-                <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center font-bold ${item.color}`}
-                >
+              <div key={i} className="flex gap-4 group">
+                <div className="w-12 h-12 rounded-xl bg-[#0B1D51] text-white flex items-center justify-center font-bold shadow-lg shadow-blue-900/20 group-hover:scale-110 transition-transform">
                   {item.num}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-800">{item.title}</h4>
+                  <h4 className="font-bold text-slate-800">{item.title}</h4>
                   <p className="text-sm text-slate-500">{item.desc}</p>
                 </div>
               </div>
@@ -53,45 +63,51 @@ const MissionSection = () => (
           </div>
         </div>
 
-        {/* Image */}
-        <div>
+        {/* Image Content */}
+        <div className="relative">
           <img
             src="https://i.ibb.co.com/tPDs0ddS/image.png"
             alt="Mission"
-            className="w-full h-72 md:h-[420px] object-cover rounded-3xl shadow-lg"
+            className="w-full h-72 md:h-[420px] object-cover rounded-[2rem] shadow-2xl border-4 border-white"
           />
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
         </div>
       </div>
-    </div>
+    </motion.div>
   </section>
 );
 
-/* ===================== VISION ===================== */
+/* ===================== VISION SECTION ===================== */
 const VisionSection = () => (
   <section className="max-w-7xl mx-auto px-6 py-20">
-    <div className="rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-3">
-      {/* Left Dark Panel */}
-      <div className="bg-slate-900 text-white p-10 lg:p-14">
-        <span className="text-blue-400 font-semibold text-sm">
+    <div className="rounded-[2.5rem] shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-3 border border-slate-100">
+      {/* Left Deep Blue Panel */}
+      <div className="bg-[#0B1D51] text-white p-10 lg:p-14 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-[80px] opacity-20"></div>
+        <span className="text-blue-400 font-bold text-xs uppercase tracking-widest">
           Looking Ahead
         </span>
 
-        <h4 className="text-3xl font-extrabold mt-3 mb-4">Our Vision</h4>
+        <h4 className="text-3xl font-extrabold mt-3 mb-6 leading-tight">
+          Our Vision
+        </h4>
 
-        <p className="text-slate-300 leading-relaxed">
-          A healthier community where timely, quality care is accessible to
-          everyone — powered by innovation, education, and collaboration.
+        <p className="text-blue-100/70 leading-relaxed mb-10">
+          To build a healthier community where timely, quality care is
+          accessible to everyone — powered by medical innovation.
         </p>
 
-        <div className="mt-10 grid grid-cols-3 gap-6 text-center">
+        <div className="grid grid-cols-3 gap-4 text-center">
           {[
             { value: '24/7', label: 'Service' },
             { value: '150+', label: 'Staff' },
-            { value: '10k+', label: 'Lives Touched' },
+            { value: '10k+', label: 'Patients' },
           ].map((s, i) => (
             <div key={i}>
-              <div className="text-2xl font-bold">{s.value}</div>
-              <div className="text-sm text-slate-400">{s.label}</div>
+              <div className="text-xl font-bold text-blue-400">{s.value}</div>
+              <div className="text-[10px] font-bold uppercase tracking-wider text-blue-100/50">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
@@ -99,100 +115,134 @@ const VisionSection = () => (
 
       {/* Right Content */}
       <div className="lg:col-span-2 bg-white p-8 md:p-14">
-        <h5 className="text-xl font-semibold text-slate-800 mb-6">
-          How We Achieve This
+        <h5 className="text-2xl font-bold text-[#0B1D51] mb-8">
+          How We Achieve Excellence
         </h5>
 
-        <ol className="space-y-5 list-decimal list-inside text-slate-600">
-          <li>
-            <strong>Community Programs:</strong> Free screening camps and health
-            education initiatives.
-          </li>
-          <li>
-            <strong>Continuous Training:</strong> Regular upskilling and
-            emergency response drills.
-          </li>
-          <li>
-            <strong>Technology:</strong> Investment in modern diagnostics and
-            telemedicine.
-          </li>
-        </ol>
+        <ul className="space-y-6">
+          {[
+            {
+              icon: '01',
+              title: 'Community Programs',
+              desc: 'Free screening camps and health education initiatives.',
+            },
+            {
+              icon: '02',
+              title: 'Continuous Training',
+              desc: 'Regular upskilling and emergency response drills for staff.',
+            },
+            {
+              icon: '03',
+              title: 'Technology',
+              desc: 'Investment in modern diagnostics and digital telemedicine.',
+            },
+          ].map((item, idx) => (
+            <li key={idx} className="flex gap-5 group">
+              <span className="text-blue-200 font-black text-4xl group-hover:text-blue-500 transition-colors">
+                {item.icon}
+              </span>
+              <div>
+                <h6 className="font-bold text-slate-800 text-lg">
+                  {item.title}
+                </h6>
+                <p className="text-slate-500 leading-relaxed">{item.desc}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
 );
 
-/* ===================== FACILITIES ===================== */
+/* ===================== FACILITIES SECTION ===================== */
 const FacilitiesSection = () => (
   <section className="max-w-7xl mx-auto px-6 py-20">
-    <div className="bg-gradient-to-br from-white to-slate-50 rounded-3xl shadow-xl p-8 md:p-14">
-      <div className="text-center mb-12">
-        <span className="text-blue-600 font-semibold text-sm">
-          What We Offer
-        </span>
-        <h3 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-3">
-          Facilities & Specialities
-        </h3>
-      </div>
+    <div className="text-center mb-16">
+      <span className="text-blue-600 font-bold text-xs uppercase tracking-widest">
+        What We Offer
+      </span>
+      <h3 className="text-4xl md:text-5xl font-extrabold text-[#0B1D51] mt-3">
+        Modern <span className="text-blue-500 italic">Facilities</span>
+      </h3>
+    </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { title: 'Emergency Care', desc: '24/7 ambulance & ER' },
-          { title: 'Surgery', desc: 'Advanced OT suites' },
-          { title: 'Diagnostics', desc: 'Modern labs & imaging' },
-          { title: 'Mental Health', desc: 'Counseling & therapy' },
-        ].map((f, i) => (
-          <div
-            key={i}
-            className="bg-white rounded-3xl p-6 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
-          >
-            <div className="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center mb-4">
-              <span className="text-blue-600 font-bold">+</span>
-            </div>
-            <h6 className="font-semibold text-slate-800">{f.title}</h6>
-            <p className="text-sm text-slate-500 mt-2">{f.desc}</p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        {
+          title: 'Emergency Care',
+          icon: <FaAmbulance />,
+          desc: '24/7 ambulance & trauma unit',
+        },
+        {
+          title: 'Surgery Care',
+          icon: <FaStethoscope />,
+          desc: 'Advanced OT suites',
+        },
+        {
+          title: 'Lab Diagnostics',
+          icon: <FaMicroscope />,
+          desc: 'Modern imaging & pathology',
+        },
+        {
+          title: 'Mental Health',
+          icon: <FaBrain />,
+          desc: 'Personalized therapy sessions',
+        },
+      ].map((f, i) => (
+        <motion.div
+          key={i}
+          whileHover={{ y: -10 }}
+          className="bg-white rounded-[2rem] p-8 shadow-xl shadow-blue-900/5 border border-slate-50 hover:border-blue-100 transition-all text-center"
+        >
+          <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 mx-auto text-2xl shadow-inner">
+            {f.icon}
           </div>
-        ))}
-      </div>
+          <h6 className="text-xl font-bold text-slate-800">{f.title}</h6>
+          <p className="text-slate-500 mt-3 text-sm leading-relaxed">
+            {f.desc}
+          </p>
+        </motion.div>
+      ))}
     </div>
   </section>
 );
 
-/* ===================== ABOUT US ===================== */
+/* ===================== MAIN ABOUT US PAGE ===================== */
 const AboutUs = () => {
   return (
-    <div className="space-y-10">
+    <div className="bg-white ">
+      
+      {/* Top Section: About (Apnar custom About component) */}
       <About />
+
       <MissionSection />
       <VisionSection />
       <FacilitiesSection />
 
-      {/* CTA */}
+      {/* CTA SECTION - Updated with Deep Blue Theme */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="bg-gradient-to-r from-orange-50 to-white rounded-3xl p-10 md:p-14 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
-          <div>
-            <h4 className="text-3xl font-extrabold text-slate-900">
-              Ready to Get Care?
+        <div className="bg-[#0B1D51] rounded-[2.5rem] p-10 md:p-16 shadow-2xl shadow-blue-900/20 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
+          {/* Decorative Glow */}
+          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-500 rounded-full blur-[100px] opacity-20"></div>
+
+          <div className="relative z-10 text-center md:text-left">
+            <h4 className="text-3xl md:text-4xl font-extrabold text-white">
+              Ready to <span className="text-blue-400">Receive Care?</span>
             </h4>
-            <p className="text-slate-600 mt-3 max-w-xl">
-              Call our 24/7 hotline or book an appointment online. Our medical
-              team is always ready to help you.
+            <p className="text-blue-100/70 mt-4 max-w-xl text-lg">
+              Our medical team is available 24/7 to support your health journey.
+              Contact us now for any emergencies or general inquiries.
             </p>
           </div>
 
-          <div className="flex gap-4">
-            <a
-              href="#contact"
-              className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-semibold transition"
-            >
-              Contact Us
-            </a>
-            <a
-              href="#services"
-              className="px-6 py-3 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition"
-            >
-              View Services
-            </a>
+          <div className="flex flex-wrap justify-center gap-4 relative z-10">
+            <button className="px-8 py-4 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold shadow-lg shadow-blue-500/30 transition-all flex items-center gap-2">
+              <FaPhoneAlt size={16} /> Contact Us
+            </button>
+            <button className="px-8 py-4 rounded-xl border-2 border-white/20 text-white font-bold hover:bg-white/10 transition-all flex items-center gap-2">
+              <FaCalendarCheck size={18} /> View Services
+            </button>
           </div>
         </div>
       </section>

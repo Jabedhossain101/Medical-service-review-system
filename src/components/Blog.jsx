@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  FaCalendarAlt,
+  FaUser,
+  FaArrowRight,
+  FaShareAlt,
+} from 'react-icons/fa';
 
 const posts = [
   {
@@ -10,11 +17,10 @@ const posts = [
     image:
       'https://images.unsplash.com/photo-1587502536263-12b2f6f9b3b9?auto=format&fit=crop&w=1200&q=80',
     excerpt:
-      'Knowing when to call an ambulance can save lives. This article breaks down clear signs, practical steps to take while help is on the way, and how to communicate with emergency dispatchers effectively.',
+      'Knowing when to call an ambulance can save lives. This article breaks down clear signs and practical steps to take.',
     content: [
-      `Recognizing life-threatening conditions quickly is essential. Call an ambulance immediately if you observe severe breathing difficulties, unresponsiveness, heavy bleeding that cannot be controlled, chest pain lasting more than a few minutes, signs of stroke (face drooping, arm weakness, speech difficulty), severe head injury, or seizures that do not stop.`,
-      `While waiting for emergency responders: ensure the person is in a safe position (for example, place an unconscious but breathing person on their side), stop visible bleeding using firm pressure and clean cloths, start CPR if trained and the person is not breathing, and stay calm while providing the dispatcher with exact location, age and condition of the patient, any known allergies and medications, and events leading up to the incident.`,
-      `Preventive tips: keep important medical information easily accessible (medication list, allergies, chronic conditions), teach basic first-aid and CPR to household members, and maintain a working phone with emergency numbers saved. Understanding these measures increases survival chance and reduces complications.`
+      `Recognizing life-threatening conditions quickly is essential. Call an ambulance immediately if you observe severe breathing difficulties, signs of stroke, or heavy bleeding.`,
+      `While waiting for emergency responders: ensure the person is in a safe position, stop visible bleeding using firm pressure, and stay calm while providing the dispatcher with exact information.`,
     ],
   },
   {
@@ -26,11 +32,10 @@ const posts = [
     image:
       'https://images.unsplash.com/photo-1580281657521-3c6a3b7a6c3d?auto=format&fit=crop&w=1200&q=80',
     excerpt:
-      'Surgery can be daunting. This long-form post explains pre-operative steps, how to manage medications, realistic recovery expectations, and questions to ask your surgical team.',
+      'Surgery can be daunting. This post explains pre-operative steps, medication management, and recovery expectations.',
     content: [
-      `Before surgery, a thorough assessment helps reduce risks. Attend pre-op evaluations, disclose all medications (including supplements), and follow fasting instructions carefully. Some blood-thinning medicines may need temporary stopping — only change medications under physician guidance.`,
-      `On the day of surgery: arrive early, bring a responsible person to accompany you, and have a clear plan for post-anesthesia transport. Discuss pain control options and rehabilitation plans with your team. Recovery varies by procedure — minor procedures may allow same-day discharge while major operations require multi-day inpatient care and structured physiotherapy.`,
-      `Emotional preparation is equally important. Anxiety is normal; ask your provider about what to expect, rehabilitation timelines, and warning signs of complications. Planning home support (groceries, transport, childcare) minimizes stress and speeds recovery.`
+      `Before surgery, disclose all medications and follow fasting instructions carefully. On the day of surgery, arrive early and have a clear post-anesthesia plan.`,
+      `Emotional preparation is equally important. Ask your provider about warning signs and planning home support to speed recovery.`,
     ],
   },
   {
@@ -42,27 +47,25 @@ const posts = [
     image:
       'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80',
     excerpt:
-      'This article provides concrete steps to support someone experiencing an acute mental health episode, how to de-escalate safely, and when to involve professional emergency services.',
+      'Concrete steps to support someone experiencing a crisis, how to de-escalate safely, and when to call professionals.',
     content: [
-      `When someone is in a mental health crisis — showing extreme agitation, confusion, self-harm behavior, or thoughts of suicide — prioritize safety. Speak calmly, use short sentences, and listen without judgement. Remove objects that could be used for self-harm if it is safe to do so.`,
-      `If the person poses an immediate danger to themselves or others, call emergency services. Provide clear information: current behavior, known diagnoses, medications, and any triggers. If they refuse help but are at risk, trained dispatchers and responders can assess and provide appropriate interventions.`,
-      `Longer-term support includes connecting the person to counseling, psychiatric evaluation, peer support, and crisis hotlines. Encourage follow-up care, and ensure caregivers have resources and boundaries to avoid burnout.`
+      `When someone is in a mental health crisis, prioritize safety. Speak calmly, listen without judgement, and remove dangerous objects.`,
+      `If there is immediate danger, call emergency services. Provide behavior details and known diagnoses to help responders assess the situation.`,
     ],
   },
   {
     id: 4,
-    title: 'Telemedicine & You: Best Practices for Remote Consultations',
+    title: 'Telemedicine: Best Practices for Remote Consultations',
     date: '2025-07-22',
     author: 'Clinical Team',
     tags: ['Telehealth', 'Tips'],
     image:
       'https://images.unsplash.com/photo-1580281340086-6f6e3d6d1d2b?auto=format&fit=crop&w=1200&q=80',
     excerpt:
-      'Telemedicine is an important tool for timely care. Learn how to prepare for a successful virtual visit, what information to have on hand, and the types of conditions well-suited to remote care.',
+      'Learn how to prepare for a successful virtual visit, information to have on hand, and conditions suited to remote care.',
     content: [
-      `Prepare a quiet, well-lit space with a charged device and a stable internet connection. Have your medication list, recent vitals (temperature, blood pressure if available), and a brief symptom timeline ready. This helps clinicians make accurate remote assessments.`,
-      `Telemedicine works well for follow-ups, medication reviews, mental health counseling, triage for acute minor illnesses, and simple dermatology checks. However, it is not suitable for severe emergencies, uncontrolled bleeding, or conditions requiring immediate hands-on assessment.`,
-      `Privacy: use a secure platform recommended by your provider, and avoid public Wi-Fi for sensitive consultations. If the clinician requests in-person follow-up or tests, treat that recommendation seriously to avoid missed diagnoses.`
+      `Prepare a quiet space and have your symptoms timeline ready. Telemedicine works well for follow-ups and minor illnesses.`,
+      `Treat telemedicine seriously. If a clinician requests in-person follow-up or tests, treat that recommendation as a priority.`,
     ],
   },
 ];
@@ -74,93 +77,138 @@ const Blog = () => {
   const visiblePosts = showAll ? posts : posts.slice(0, 3);
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-12">
-     <div className='mt-16'></div>
-      <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">Health & Care Insights</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          In-depth articles, practical guides and professional tips from our medical team — written to help patients, families and caregivers make informed decisions.
-        </p>
-      </div>
+    <section className="bg-white py-24 overflow-hidden relative">
+      {/* Background Decorative Accents */}
+      <div className="absolute top-20 right-0 w-96 h-96 bg-blue-50 rounded-full blur-[100px] -z-10 opacity-60"></div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {visiblePosts.map(post => (
-          <article
-            key={post.id}
-            className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-2xl transition"
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-block px-4 py-1.5 mb-4 text-xs font-bold uppercase tracking-[0.2em] text-blue-600 bg-blue-50 rounded-full"
           >
-            <div className="h-44 md:h-56 w-full overflow-hidden">
-              <img
-                src={post.image}
-                alt={post.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
+            Medical Blog & News
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-extrabold text-[#0B1D51] leading-tight"
+          >
+            Health & <span className="text-blue-500 italic">Care Insights</span>
+          </motion.h2>
+          <p className="mt-4 text-slate-500 max-w-2xl mx-auto text-lg">
+            Practical guides and professional tips from our medical team to help
+            you make informed healthcare decisions.
+          </p>
+        </div>
 
-            <div className="p-6">
-              <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-                <span>{new Date(post.date).toLocaleDateString()}</span>
-                <span className="font-medium text-gray-700">{post.author}</span>
-              </div>
-
-              <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-2">{post.title}</h3>
-
-              <p className="text-sm text-gray-600 mb-3">{post.excerpt}</p>
-
-              <div className="flex flex-wrap gap-2 mb-4">
-                {post.tags.map(tag => (
-                  <span key={tag} className="text-xs bg-gray-100 px-2 py-1 rounded-full text-gray-700">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {openId === post.id ? (
-                <div className="prose max-w-none text-gray-700 mb-4">
-                  {post.content.map((p, i) => (
-                    <p key={i}>{p}</p>
+        {/* Blog Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {visiblePosts.map((post, idx) => (
+            <motion.article
+              key={post.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white rounded-[2rem] shadow-xl shadow-blue-900/5 overflow-hidden border border-slate-50 flex flex-col group transition-all duration-500 hover:shadow-2xl hover:border-blue-100"
+            >
+              {/* Post Image */}
+              <div className="relative h-60 w-full overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                  {post.tags.map(tag => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-bold uppercase tracking-wider bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full border border-white/20"
+                    >
+                      {tag}
+                    </span>
                   ))}
                 </div>
-              ) : null}
-
-              <div className="flex items-center justify-between">
-                <button
-                  onClick={() => setOpenId(openId === post.id ? null : post.id)}
-                  className="text-sm font-medium text-[#FF9B10] hover:underline"
-                  aria-expanded={openId === post.id}
-                >
-                  {openId === post.id ? 'Read less' : 'Read more'}
-                </button>
-
-                <a
-                  href="#"
-                  className="text-sm text-gray-500 hover:underline"
-                  onClick={e => e.preventDefault()}
-                >
-                  Share
-                </a>
               </div>
-            </div>
-          </article>
-        ))}
-      </div>
 
-      <div className="mt-8 text-center">
-        {!showAll ? (
+              {/* Content */}
+              <div className="p-8 flex-1 flex flex-col">
+                <div className="flex items-center gap-6 text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">
+                  <div className="flex items-center gap-2">
+                    <FaCalendarAlt className="text-blue-500" />
+                    {new Date(post.date).toLocaleDateString()}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FaUser className="text-blue-500" />
+                    {post.author}
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-[#0B1D51] mb-3 group-hover:text-blue-600 transition-colors leading-tight">
+                  {post.title}
+                </h3>
+
+                <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                  {post.excerpt}
+                </p>
+
+                <AnimatePresence>
+                  {openId === post.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden border-t border-slate-100 pt-4 mb-4"
+                    >
+                      <div className="prose prose-sm text-slate-600 space-y-4 font-medium italic">
+                        {post.content.map((p, i) => (
+                          <p key={i}>{p}</p>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <div className="mt-auto flex items-center justify-between pt-6 border-t border-slate-50">
+                  <button
+                    onClick={() =>
+                      setOpenId(openId === post.id ? null : post.id)
+                    }
+                    className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-[#0B1D51] transition-colors"
+                  >
+                    {openId === post.id ? 'Read Less' : 'Read More'}
+                    <FaArrowRight
+                      className={`text-xs transition-transform ${
+                        openId === post.id ? 'rotate-[-90deg]' : ''
+                      }`}
+                    />
+                  </button>
+
+                  <button className="text-slate-300 hover:text-blue-500 transition-colors">
+                    <FaShareAlt size={16} />
+                  </button>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+
+        {/* Toggle Button */}
+        <div className="mt-16 text-center">
           <button
-            onClick={() => setShowAll(true)}
-            className="inline-block px-6 py-3 rounded-lg bg-[#FF9B10] text-white font-semibold shadow hover:brightness-95"
+            onClick={() => setShowAll(!showAll)}
+            className={`px-10 py-4 rounded-2xl font-bold transition-all shadow-xl ${
+              showAll
+                ? 'border-2 border-slate-100 text-[#0B1D51] hover:bg-slate-50'
+                : 'bg-[#0B1D51] text-white shadow-blue-900/20 hover:bg-blue-900'
+            }`}
           >
-            Load more posts
+            {showAll ? 'Show Less' : 'Load More Insights'}
           </button>
-        ) : (
-          <button
-            onClick={() => setShowAll(false)}
-            className="inline-block px-6 py-3 rounded-lg border border-gray-200 text-gray-700 font-medium"
-          >
-            Show less
-          </button>
-        )}
+        </div>
       </div>
     </section>
   );

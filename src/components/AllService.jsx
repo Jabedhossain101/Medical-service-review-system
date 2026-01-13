@@ -104,7 +104,7 @@ const AllService = () => {
           <button
             onClick={() => setShowAll(prev => !prev)}
             className="px-8 py-3 rounded-lg font-semibold text-white
-                       bg-gradient-to-r from-orange-400 to-orange-500
+                       bg-gradient-to-r from-[#0B1D97] to-[#0B1D85]
                        hover:opacity-90 transition"
           >
             {showAll ? 'Show Less' : 'Show All'}
