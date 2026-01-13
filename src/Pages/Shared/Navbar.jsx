@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 import { RxHamburgerMenu } from 'react-icons/rx';
@@ -6,6 +6,17 @@ import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSignOut = () => {
     signOutUser()
@@ -23,72 +34,41 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/about"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        About
-      </NavLink>
-      <NavLink
-        to="/all"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        All Services
-      </NavLink>
-      <NavLink
-        to="/doctors"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        Doctors
-      </NavLink>
-      <NavLink
-        to="/blog"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        Blog
-      </NavLink>
-      <NavLink
-        to="/contact"
-        className={({ isActive }) =>
-          `px-4 py-2 rounded-md transition font-semibold ${
-            isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
-          }`
-        }
-      >
-        Contact
-      </NavLink>
+      {['/', '/about', '/all', '/doctors', '/blog', '/contact'].map(
+        (path, i) => (
+          <NavLink
+            key={i}
+            to={path}
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-md transition font-semibold ${
+                isActive
+                  ? 'text-[#FF9B00]'
+                  : 'text-white hover:text-[#FF9B00] hover:scale-105'
+              }`
+            }
+          >
+            {path === '/'
+              ? 'Home'
+              : path === '/about'
+              ? 'About'
+              : path === '/all'
+              ? 'All Services'
+              : path === '/doctors'
+              ? 'Doctors'
+              : path === '/blog'
+              ? 'Blog'
+              : 'Contact'}
+          </NavLink>
+        )
+      )}
       {user && (
         <NavLink
           to="/dashboard"
           className={({ isActive }) =>
             `px-4 py-2 rounded-md transition font-semibold ${
-              isActive ? 'text-[#FF9B00]' : 'hover:text-[#FF9B00]'
+              isActive
+                ? 'text-[#FF9B00]'
+                : 'text-white hover:text-[#FF9B00] hover:scale-105'
             }`
           }
         >
@@ -99,123 +79,127 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#0B0B0B] text-white shadow-lg fixed top-0 z-50 w-full border-b border-gray-800">
-      {/* Navbar Start */}
-      <div className="navbar-start px-4 lg:px-8">
-        {/* Mobile menu */}
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden p-2">
-            <RxHamburgerMenu className="text-white text-2xl" />
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-4 shadow bg-[#111111] text-white rounded-lg w-60 border border-gray-700 space-y-2"
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled ? 'bg-black/80 backdrop-blur-md shadow-lg' : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center h-20">
+        {/* Brand */}
+        <Link
+          to="/"
+          className="text-2xl font-extrabold flex items-center gap-1 text-white"
+        >
+          <span>MEDI</span>
+          <span className="text-[#FF9B00]">SERVICE</span>
+        </Link>
+
+        {/* Desktop Menu */}
+        <div className="hidden lg:flex items-center gap-6">{navLinks}</div>
+
+        {/* Right buttons / avatar */}
+        <div className="hidden lg:flex items-center gap-3">
+          {user ? (
+            <div className="dropdown dropdown-end relative">
+              <label
+                tabIndex={0}
+                className="btn btn-ghost btn-circle avatar border border-gray-300"
+              >
+                <div className="w-10 rounded-full overflow-hidden">
+                  <img
+                    src={user.photoURL || 'https://via.placeholder.com/150'}
+                    alt="User Avatar"
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="absolute right-0 mt-2 w-48 p-3 shadow-lg menu menu-sm dropdown-content bg-black/80 text-white rounded-lg backdrop-blur-md"
+              >
+                <li>
+                  <Link
+                    to="/profile"
+                    className="hover:text-[#FF9B00] font-semibold"
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className="hover:text-[#FF9B00] font-semibold"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleSignOut}
+                    className="w-full bg-[#FF9B00] hover:bg-[#e28a00] rounded-md text-white py-2 font-semibold mt-2"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-5 py-2 rounded-md border border-white text-white hover:bg-white/10 font-semibold transition"
+              >
+                Login
+              </Link>
+              <Link
+                to="/register"
+                className="px-5 py-2 rounded-md bg-[#FF9B00] hover:bg-[#e28a00] text-white font-semibold transition"
+              >
+                Register
+              </Link>
+            </>
+          )}
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="lg:hidden relative">
+          <button
+            className="text-white text-2xl p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
           >
-            {navLinks}
-            <div className="border-t border-gray-600 mt-3 pt-3">
+            <RxHamburgerMenu />
+          </button>
+
+          {menuOpen && (
+            <div className="absolute right-0 top-16 w-60 bg-black/90 backdrop-blur-md p-4 rounded-lg shadow-lg flex flex-col gap-3">
+              {navLinks}
               {user ? (
                 <button
                   onClick={handleSignOut}
-                  className="btn bg-[#FF9B00] btn-sm w-full text-white font-semibold hover:bg-[#e28a00] transition"
+                  className="bg-[#FF9B00] hover:bg-[#e28a00] py-2 rounded-md text-white font-semibold mt-2"
                 >
                   Sign Out
                 </button>
               ) : (
-                <div className="flex flex-col gap-2">
+                <>
                   <Link
                     to="/login"
-                    className="btn btn-sm border border-gray-600 bg-transparent text-white hover:bg-gray-800 font-semibold"
+                    className="border border-white py-2 rounded-md text-white hover:bg-white/10 text-center font-semibold"
                   >
                     Login
                   </Link>
                   <Link
                     to="/register"
-                    className="btn btn-sm bg-[#FF9B00] text-white hover:bg-[#e28a00] font-semibold"
+                    className="bg-[#FF9B00] py-2 rounded-md text-white hover:bg-[#e28a00] text-center font-semibold"
                   >
                     Register
                   </Link>
-                </div>
+                </>
               )}
             </div>
-          </ul>
+          )}
         </div>
-
-        {/* Brand Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-extrabold tracking-wide flex items-center gap-1"
-        >
-          <span className="text-white">MEDI</span>
-          <span className="text-[#FF9B00]">SERVICE</span>
-        </Link>
       </div>
-
-      {/* Navbar Center */}
-      <div className="navbar-center hidden lg:flex space-x-3">{navLinks}</div>
-
-      {/* Navbar End */}
-      <div className="navbar-end px-4 lg:px-8">
-        {user ? (
-          <div className="dropdown dropdown-end">
-            <label
-              tabIndex={0}
-              className="btn btn-ghost btn-circle avatar border border-gray-600"
-            >
-              <div className="w-10 rounded-full overflow-hidden">
-                <img
-                  src={user.photoURL || 'https://via.placeholder.com/150'}
-                  alt="User Avatar"
-                />
-              </div>
-            </label>
-            <ul
-              tabIndex={0}
-              className="mt-3 p-3 shadow menu menu-sm dropdown-content bg-[#111111] text-white rounded-lg w-52 border border-gray-700"
-            >
-              <li>
-                <Link
-                  to="/profile"
-                  className="font-semibold hover:text-[#FF9B00] transition"
-                >
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/dashboard"
-                  className="font-semibold hover:text-[#FF9B00] transition"
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <button
-                  className="btn bg-[#FF9B00] text-white hover:bg-[#e28a00] transition font-semibold mt-2"
-                  onClick={handleSignOut}
-                >
-                  Sign Out
-                </button>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              to="/login"
-              className="px-5 py-2 rounded-md border border-gray-600 bg-transparent text-white hover:bg-gray-800 transition font-semibold"
-            >
-              Login
-            </Link>
-            <Link
-              to="/register"
-              className="px-5 py-2 rounded-md bg-[#FF9B00] hover:bg-[#e28a00] text-white transition font-semibold"
-            >
-              Register
-            </Link>
-          </div>
-        )}
-      </div>
-    </div>
+    </nav>
   );
 };
 

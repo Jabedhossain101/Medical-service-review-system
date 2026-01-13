@@ -1,83 +1,110 @@
 import React from 'react';
 
-const Banner = () => {
+const ReviewHighlightSection = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100">
-      {/* Gradient Blobs */}
-      <div className="absolute top-[-100px] left-[-100px] w-96 h-96 bg-blue-300 rounded-full blur-3xl opacity-30"></div>
-      <div className="absolute bottom-[-120px] right-[-120px] w-96 h-96 bg-indigo-300 rounded-full blur-3xl opacity-30"></div>
+    <section className="py-20 relative overflow-hidden bg-white">
+      {/* Background Subtle Elements - Match with Hero */}
+      <div className="absolute top-20 right-0 w-72 h-72 bg-blue-50 rounded-full blur-3xl -z-10 opacity-60"></div>
+      <div className="absolute bottom-0 left-10 w-64 h-64 bg-indigo-50 rounded-full blur-3xl -z-10 opacity-50"></div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-        {/* LEFT CONTENT */}
-        <div>
-          <span className="inline-block mb-4 px-4 py-1 text-sm font-semibold text-blue-600 bg-blue-100 rounded-full">
-            Trusted Healthcare Platform
-          </span>
-
-          <h1 className="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-            Better Care Starts with <br />
-            <span className="text-blue-600">Better Reviews</span>
-          </h1>
-
-          <p className="mt-6 text-lg text-slate-600 max-w-xl">
-            Discover verified doctors, trusted clinics, and real patient
-            reviews. Make confident healthcare decisions in minutes.
-          </p>
-
-          {/* Search Box */}
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 bg-white/80 backdrop-blur-lg p-3 rounded-2xl shadow-xl border">
-            <input
-              type="text"
-              placeholder="Search doctors, hospitals, services..."
-              className="flex-1 px-4 py-3 rounded-xl outline-none text-slate-700 bg-transparent"
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* LEFT SIDE: Visual Representation */}
+        <div className="relative order-2 lg:order-1">
+          {/* Main Image with Frame */}
+          <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-xl border-[12px] border-slate-50">
+            <img
+              src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80"
+              alt="Medical Consultation"
+              className="w-full h-[400px] object-cover"
             />
-            <button className="px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
-              Explore
-            </button>
           </div>
 
-          {/* Stats */}
-          <div className="mt-10 flex gap-8">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900">10k+</h3>
-              <p className="text-sm text-slate-500">Verified Reviews</p>
+          {/* Floating Trust Card 1 - Verification */}
+          <div className="absolute -top-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-blue-50 z-20 flex items-center gap-3 animate-bounce-slow">
+            <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-slate-900">500+</h3>
-              <p className="text-sm text-slate-500">Specialist Doctors</p>
+              <p className="text-sm font-bold text-slate-800">
+                Verified Reviews
+              </p>
+              <p className="text-xs text-slate-500">100% Authentic</p>
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900">98%</h3>
-              <p className="text-sm text-slate-500">Patient Satisfaction</p>
+          </div>
+
+          {/* Floating Trust Card 2 - Satisfaction */}
+          <div className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-blue-50 z-20 hidden md:block">
+            <div className="flex items-center gap-1 mb-1">
+              {[...Array(5)].map((_, i) => (
+                <span key={i} className="text-yellow-400 text-lg">
+                  ★
+                </span>
+              ))}
             </div>
+            <p className="text-sm font-bold text-slate-800 italic">
+              "Highly Recommended!"
+            </p>
+            <p className="text-xs text-slate-500 mt-1">— Happy Patient</p>
           </div>
         </div>
 
-        {/* RIGHT IMAGE AREA */}
-        <div className="relative flex justify-center">
-          {/* Doctor Image */}
-          <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
-            <img
-              src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=900&q=80"
-              alt="Doctor"
-              className="w-[380px] md:w-[420px] object-cover"
-            />
+        {/* RIGHT SIDE: Content & Stats */}
+        <div className="order-1 lg:order-2">
+          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 rounded-full border border-blue-100">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+            </span>
+            Community Trust
           </div>
 
-          {/* Floating Card 1 */}
-          <div className="absolute top-10 -left-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg">
-            <p className="text-sm font-semibold text-slate-800">
-              ✔ Verified Doctors
-            </p>
-            <p className="text-xs text-slate-500">Government Approved</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 leading-tight">
+            Empowering Patients with <br />
+            <span className="text-blue-600 italic">Transparent Reviews</span>
+          </h2>
+
+          <p className="mt-6 text-slate-600 leading-relaxed text-lg">
+            Beyond just medical care, we believe in the power of shared
+            experiences. Our platform connects you with the right specialists
+            based on real feedback from people who have been there.
+          </p>
+
+          {/* Modern Stats Grid */}
+          <div className="mt-10 grid grid-cols-2 gap-6">
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-md transition-all">
+              <h3 className="text-3xl font-extrabold text-blue-600">10k+</h3>
+              <p className="text-sm font-semibold text-slate-500 mt-1 uppercase tracking-wide">
+                Patient Stories
+              </p>
+            </div>
+            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-md transition-all">
+              <h3 className="text-3xl font-extrabold text-blue-600">99%</h3>
+              <p className="text-sm font-semibold text-slate-500 mt-1 uppercase tracking-wide">
+                Accuracy Rate
+              </p>
+            </div>
           </div>
 
-          {/* Floating Card 2 */}
-          <div className="absolute bottom-10 -right-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-lg">
-            <p className="text-sm font-semibold text-slate-800">
-              ⭐ 4.9 Rating
-            </p>
-            <p className="text-xs text-slate-500">From Real Patients</p>
+          <div className="mt-10">
+            <button className="group flex items-center gap-3 text-slate-900 font-bold hover:text-blue-600 transition-colors">
+              <span>See how our review system works</span>
+              <span className="w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center group-hover:bg-blue-600 transition-all">
+                →
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -85,4 +112,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default ReviewHighlightSection;
