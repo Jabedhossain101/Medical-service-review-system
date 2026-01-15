@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#0B1D51] via-[#102A71] to-[#0B1D51] text-white">
-      {/* Glow Effects */}
+     
       <div className="absolute top-[-120px] left-[-120px] w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
       <div className="absolute bottom-[-120px] right-[-120px] w-96 h-96 bg-indigo-500 rounded-full blur-3xl opacity-30"></div>
 
       <div className="relative max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* LEFT CONTENT */}
+        
         <div>
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,6 @@ const Hero = () => {
             />
           </motion.div>
 
-          {/* Floating Card */}
           <div className="absolute top-12 -left-8 bg-white/10 backdrop-blur-md px-5 py-4 rounded-2xl shadow-lg">
             <p className="font-semibold">✔ Verified Professionals</p>
             <p className="text-sm text-blue-200">Government Approved</p>
