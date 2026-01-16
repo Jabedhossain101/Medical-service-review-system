@@ -60,7 +60,7 @@ const Login = () => {
           </h1>
 
           <form onSubmit={handleSignIn} className="space-y-5">
-            {/* Email */}
+            
             <div>
               <label className="block text-sm font-medium text-gray-600">
                 Email
@@ -113,14 +113,14 @@ const Login = () => {
             </Link>
           </p>
 
-          {/* Divider */}
+      
           <div className="flex items-center my-6">
             <hr className="flex-grow border-t border-gray-300" />
             <span className="mx-3 text-gray-400 text-sm">OR</span>
             <hr className="flex-grow border-t border-gray-300" />
           </div>
 
-          {/* Social Login */}
+          
           <div className="flex justify-center">
             <SocialLogin from={from} />
           </div>
