@@ -2,6 +2,17 @@ import React from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { Link } from 'react-router';
 import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
+import {
+  FaStethoscope,
+  FaCloudUploadAlt,
+  FaHospital,
+  FaGlobe,
+  FaMoneyBillWave,
+  FaEnvelope,
+  FaCalendarAlt,
+  FaArrowRight, // Fixed: Added this missing import
+} from 'react-icons/fa';
 
 const AddService = () => {
   const handleAddService = e => {
@@ -21,174 +32,211 @@ const AddService = () => {
           Swal.fire({
             title: 'Service Added Successfully',
             icon: 'success',
-            confirmButtonColor: '#06923E',
+            confirmButtonColor: '#3b82f6',
+            background: '#fff',
+            color: '#0B1D51',
           });
           form.reset();
         }
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to add service. Please try again.',
+          icon: 'error',
+          confirmButtonColor: '#ef4444',
+        });
       });
   };
 
   return (
-    <div>
-      <div className="h-16"></div>
-      <div className="min-h-screen flex justify-center items-center px-4">
-        <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl p-8">
-          <Link
-            className="flex items-center gap-2 mb-6 text-gray-600 hover:text-orange-500 transition-colors duration-300"
-            to="/"
-          >
-            <IoIosArrowRoundBack className="text-2xl" />
-            Go Home
-          </Link>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-2">
-            Add Medical Service
-          </h1>
-          <p className="text-center text-gray-500 mb-8">
-            Provide professional healthcare services — diagnostics,
-            consultations, treatments, and more.
-          </p>
+    <div className="min-h-screen bg-[#F8FAFC] pb-20">
+      <div className="max-w-5xl mx-auto px-4">
+        {/* Navigation & Header */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+          <div>
+            <Link
+              className="inline-flex items-center gap-2 mb-4 text-sm font-bold text-slate-400 hover:text-blue-500 transition-colors"
+              to="/dashboard"
+            >
+              <IoIosArrowRoundBack size={24} /> Back to Dashboard
+            </Link>
+            <h1 className="text-3xl md:text-4xl font-black text-[#0B1D51]">
+              Register New{' '}
+              <span className="text-blue-500 italic">Medical Service</span>
+            </h1>
+          </div>
+          <div className="hidden md:flex w-14 h-14 bg-white rounded-2xl shadow-xl shadow-blue-900/5 items-center justify-center text-blue-500 border border-slate-50">
+            <FaStethoscope size={24} />
+          </div>
+        </div>
 
-          <form onSubmit={handleAddService} className="space-y-6">
-            {/* Service Image */}
-            <div>
-              <label className="block font-semibold text-gray-700 mb-1">
-                Service Image URL
+        {/* Main Form Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-[2.5rem] shadow-2xl shadow-blue-900/5 border border-slate-50 p-8 md:p-12"
+        >
+          <form onSubmit={handleAddService} className="space-y-8">
+            {/* Service Image Section */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                <FaCloudUploadAlt className="text-blue-500" /> Service Banner
+                URL
               </label>
               <input
                 type="text"
                 name="serviceImage"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                placeholder="https://example.com/image.jpg"
+                required
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                placeholder="https://example.com/medical-banner.jpg"
               />
             </div>
 
-            {/* Service Title & Company Name */}
+            {/* Title & Company Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Service Title
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  <FaStethoscope className="text-blue-500" /> Service Title
                 </label>
                 <input
                   type="text"
                   name="serviceTitle"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                  placeholder="Enter service title"
+                  required
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                  placeholder="e.g. Advanced Health Checkup"
                 />
               </div>
 
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Company Name
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  <FaHospital className="text-blue-500" /> Clinic/Company Name
                 </label>
                 <input
                   type="text"
                   name="companyName"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
-                  placeholder="Clinic or hospital name"
+                  required
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                  placeholder="e.g. City General Hospital"
                 />
               </div>
             </div>
 
-            {/* Website */}
-            <div>
-              <label className="block font-semibold text-gray-700 mb-1">
-                Website
+            {/* Website Link */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                <FaGlobe className="text-blue-500" /> Official Website
               </label>
               <input
                 type="text"
                 name="website"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
-                placeholder="https://example.com"
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                placeholder="https://clinic-website.com"
               />
             </div>
 
-            {/* Description */}
-            <div>
-              <label className="block font-semibold text-gray-700 mb-1">
+            {/* Description Area */}
+            <div className="space-y-3">
+              <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
                 Description
               </label>
               <textarea
                 name="description"
                 rows={4}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
-                placeholder="Describe the service..."
+                required
+                className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300 resize-none"
+                placeholder="Describe the medical facilities and expert teams included in this service..."
               ></textarea>
             </div>
 
-            {/* Category & Price */}
+            {/* Category & Pricing Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Category
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  Medical Category
                 </label>
-                <select
-                  name="category"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
-                >
-                  <option disabled selected>
-                    Select category
-                  </option>
-                  <option>Health Check</option>
-                  <option>Cardiology</option>
-                  <option>Pediatrics</option>
-                  <option>Dental</option>
-                  <option>Radiology</option>
-                  <option>Gynecology</option>
-                  <option>Ophthalmology</option>
-                  <option>Pathology</option>
-                </select>
+                <div className="relative">
+                  <select
+                    name="category"
+                    required
+                    className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 appearance-none cursor-pointer"
+                  >
+                    <option value="" disabled selected>
+                      Select service type
+                    </option>
+                    <option>Health Check</option>
+                    <option>Cardiology</option>
+                    <option>Pediatrics</option>
+                    <option>Dental</option>
+                    <option>Radiology</option>
+                    <option>Gynecology</option>
+                    <option>Ophthalmology</option>
+                    <option>Pathology</option>
+                  </select>
+                  <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                    <FaStethoscope size={14} />
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Price (BDT)
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  <FaMoneyBillWave className="text-blue-500" /> Price (BDT)
                 </label>
                 <input
                   type="number"
                   name="price"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
-                  placeholder="Enter service price"
+                  required
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                  placeholder="e.g. 5500"
                 />
               </div>
             </div>
 
-            {/* Email & Date */}
+            {/* Contact & Date Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Your Email
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  <FaEnvelope className="text-blue-500" /> Contact Email
                 </label>
                 <input
                   type="email"
                   name="userEmail"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
-                  placeholder="Your email address"
+                  required
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700 placeholder:text-slate-300"
+                  placeholder="admin@hospital.com"
                 />
               </div>
 
-              <div>
-                <label className="block font-semibold text-gray-700 mb-1">
-                  Added Date
+              <div className="space-y-3">
+                <label className="flex items-center gap-2 text-sm font-bold text-[#0B1D51] uppercase tracking-widest ml-1">
+                  <FaCalendarAlt className="text-blue-500" /> Added Date
                 </label>
                 <input
                   type="date"
                   name="addedDate"
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  required
+                  className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all font-medium text-slate-700"
                 />
               </div>
             </div>
 
             {/* Submit Button */}
-            <div>
+            <div className="pt-6 border-t border-slate-50">
               <button
                 type="submit"
-                className="w-full bg-[#ff9b00] hover:bg-orange-500 text-white font-semibold py-3 rounded-lg transition duration-200 shadow-md"
+                className="w-full py-5 bg-blue-500 hover:bg-[#0B1D51] text-white font-black uppercase tracking-widest rounded-2xl shadow-xl shadow-blue-500/20 transition-all transform hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-3"
               >
-                Add Service
+                Publish Service <FaArrowRight size={16} />
               </button>
             </div>
           </form>
-        </div>
+        </motion.div>
+
+        <p className="mt-8 text-center text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">
+          Certified Healthcare Management Portal
+        </p>
       </div>
     </div>
   );
